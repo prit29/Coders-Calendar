@@ -7,7 +7,7 @@ An android app to manage a schedule of programming contest timing of various com
 - Retrofit
 - Material UI
 - Firebase
-- SQLite/Room Database
+- SQLite/Room Databse
 
 ## Feature
 - Details of Contests
