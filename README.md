@@ -18,6 +18,7 @@ An android app to manage a schedule of programming contest timing of various com
 - Scheduled Notification reminder
 - Sort/Filter on contest objects
 - Different Layouts
+- Dark/Light Theme
 
 ## Development
 - Fork this Repo.
