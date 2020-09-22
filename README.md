@@ -13,7 +13,8 @@ An android app to manage a schedule of programming contest timing of various com
 - Firebase
 - SQLite/Room Database
 
-## Feature
-- Details of Contests
-- Notification reminder
-- Sort/Filter on various points
+## Features
+- Platform wise Details of Contests
+- Scheduled Notification reminder
+- Sort/Filter on contest objects
+- Different Layouts
