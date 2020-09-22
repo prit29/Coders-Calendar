@@ -7,6 +7,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">?attr/colorOnPrimary</item>
         <item name="android:navigationBarColor">?attr/colorOnPrimary</item>
+        <item name="fontFamily">@font/poppins</item>
+        <item name="iconTint">#fff</item>
     </style>
 
 </resources>
