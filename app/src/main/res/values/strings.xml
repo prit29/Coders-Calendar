@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Coder\'s Calendar</string>
+    <string name="copyright">© TeQ Prit</string>
+    <string name="navigation_setting">Settings</string>
+    <string name="navigation_notification">Notifications</string>
+    <string name="navigation_signout">Signout</string>
+    <string name="navigation_help">Help</string>
+    <string name="navigation_share">Share Us</string>
+    <string name="navigation_rate">Rate Us</string>
+    <string name="navigation_suggest">Suggest US</string>
+    <string name="navigation_opensource">Open Source</string>
+    <string name="email_demo">abcdefgh@xyz.com</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
