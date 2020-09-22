@@ -12,4 +12,11 @@
     <string name="email_demo">abcdefgh@xyz.com</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="codeforces">Codeforces</string>
+    <string name="codechef">Codechef</string>
+    <string name="hackerrank">Hackerrank</string>
+    <string name="hackerearth">Hackerearth</string>
+    <string name="atcoder">AtCoder</string>
+    <string name="spoj">Spoj</string>
+    <string name="topcoder">TopCoder</string>
 </resources>

@@ -14,13 +14,13 @@
             android:icon="@drawable/ic_baseline_notifications_24"
             android:title="@string/navigation_notification" />
         <item
-            android:id="@+id/nav_signout"
-            android:icon="@drawable/ic_baseline_settings_power_24"
-            android:title="@string/navigation_signout" />
-        <item
             android:id="@+id/nav_help"
             android:icon="@drawable/ic_baseline_help_24"
             android:title="@string/navigation_help" />
+        <item
+            android:id="@+id/nav_signout"
+            android:icon="@drawable/ic_baseline_settings_power_24"
+            android:title="@string/navigation_signout" />
     </group>
 
     <item android:title="Communicate">
