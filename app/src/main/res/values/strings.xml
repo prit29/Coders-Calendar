@@ -19,4 +19,7 @@
     <string name="atcoder">AtCoder</string>
     <string name="spoj">Spoj</string>
     <string name="topcoder">TopCoder</string>
+    <string name="search">Search</string>
+    <string name="change_layout">Change Layout</string>
+    <string name="communicate">Communicate</string>
 </resources>

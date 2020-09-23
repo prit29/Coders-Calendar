@@ -5,7 +5,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,7 +39,7 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
                 super.onDrawerClosed(view);
             }
         };
-        mToggle.getDrawerArrowDrawable().setColor(Color.WHITE);
+        mToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.design_default_color_on_primary));
         mDrawerOne.addDrawerListener(mToggle);
         mToggle.syncState();
 
@@ -69,25 +68,15 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.refresh:
-                // User chose the "Settings" item, show the app settings UI...
-                return true;
-
-            case R.id.layout:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
-                return true;
-
-            case R.id.Search:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
-                return true;
-
+            case R.id.menu_layout:
+                // add action
+                break;
+            case R.id.menu_search:
+                // add action
+                break;
             default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
+        return true;
     }
 }
