@@ -12,6 +12,7 @@ An android app to manage a schedule of programming contest timing of various com
 - Material UI
 - Firebase
 - SQLite/Room Database
+- Finally Refactoring to MVVM arch.
 
 ## Features
 - Platform wise Details of Contests
