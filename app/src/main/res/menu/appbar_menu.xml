@@ -2,42 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <item
-        android:id="@+id/Search"
-        android:icon="@drawable/search_icon"
-        android:title="Chenge Layout"
+        android:id="@+id/menu_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/search"
         app:showAsAction="ifRoom"/>
-
     <item
-        android:id="@+id/layout"
-        android:icon="@drawable/layout_change_icon"
-        android:title="Chenge Layout"
+        android:id="@+id/menu_layout"
+        android:icon="@drawable/ic_baseline_layers_24"
+        android:title="@string/change_layout"
         app:showAsAction="ifRoom"/>
-
-    <item
-        android:id="@+id/refresh"
-        android:icon="@drawable/refresh_icon"
-        android:title="Refresh"
-        app:showAsAction="ifRoom"/>
-
-
-    <item
-        android:id="@+id/settings"
-        android:title="Settings"
-        app:showAsAction="never"
-        ></item>
-
-    <item
-        android:id="@+id/about"
-        android:title="About"
-        app:showAsAction="never"
-        ></item>
-
-    <item
-        android:id="@+id/logout"
-        android:title="LogOut"
-        app:showAsAction="never"
-        ></item>
-
 </menu>

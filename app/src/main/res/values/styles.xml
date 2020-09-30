@@ -7,8 +7,11 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">?attr/colorOnPrimary</item>
         <item name="android:navigationBarColor">?attr/colorOnPrimary</item>
-        <item name="fontFamily">@font/poppins</item>
-        <item name="iconTint">#fff</item>
+        <item name="actionOverflowButtonStyle">@style/MyOverflowButtonStyle</item>
+        <item name="iconTint">?attr/colorOnSurface</item>
     </style>
 
+    <style name="MyOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">?attr/colorOnBackground</item>
+    </style>
 </resources>
