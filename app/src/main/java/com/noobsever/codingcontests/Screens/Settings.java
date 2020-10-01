@@ -45,7 +45,7 @@ public class Settings extends AppCompatActivity {
         if(atcoder.isChecked()) checkedItem.add("AtCoder");
 
         Intent i = new Intent(Settings.this,LayoutOneActivity.class);
-        i.putStringArrayListExtra("TAB_ITEMS",checkedItem);
+        i.putStringArrayListExtra(LIST_KEY,checkedItem);
         startActivity(i);
     }
 }
