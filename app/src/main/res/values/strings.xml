@@ -22,4 +22,8 @@
     <string name="search">Search</string>
     <string name="change_layout">Change Layout</string>
     <string name="communicate">Communicate</string>
+    <string name="set_notification">Set Notification</string>
+    <string name="set_reminder">Set Reminder</string>
+    <string name="start"><u>START</u></string>
+    <string name="end"><u>END</u></string>
 </resources>
