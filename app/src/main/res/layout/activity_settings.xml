@@ -40,6 +40,7 @@ android:padding="8dp">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="true"
+                android:tag="@string/codeforces"
                 android:textSize="18sp"
                 android:text="@string/codeforces"/>
             <CheckBox
@@ -48,6 +49,7 @@ android:padding="8dp">
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:textSize="18sp"
+                android:tag="@string/codechef"
                 android:text="@string/codechef"/>
             <CheckBox
                 android:id="@+id/cb_hackerrank"
@@ -55,6 +57,7 @@ android:padding="8dp">
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:textSize="18sp"
+                android:tag="@string/hackerrank"
                 android:text="@string/hackerrank"/>
             <CheckBox
                 android:id="@+id/cb_hackerearth"
@@ -62,6 +65,7 @@ android:padding="8dp">
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:textSize="18sp"
+                android:tag="@string/hackerearth"
                 android:text="@string/hackerearth"/>
             <CheckBox
                 android:id="@+id/cb_spoj"
@@ -69,6 +73,7 @@ android:padding="8dp">
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:textSize="18sp"
+                android:tag="@string/spoj"
                 android:text="@string/spoj"/>
             <CheckBox
                 android:id="@+id/cb_atcoder"
@@ -76,6 +81,7 @@ android:padding="8dp">
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:textSize="18sp"
+                android:tag="@string/atcoder"
                 android:text="@string/atcoder"/>
         </LinearLayout>
 
