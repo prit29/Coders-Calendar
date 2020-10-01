@@ -12,6 +12,7 @@ import com.noobsever.codingcontests.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class Settings extends AppCompatActivity {
 
@@ -47,6 +48,7 @@ public class Settings extends AppCompatActivity {
         spoj = findViewById(R.id.cb_spoj);
         atcoder = findViewById(R.id.cb_atcoder);
 
+        restoreCheckBoxState();
     }
 
     @Override
@@ -68,5 +70,28 @@ public class Settings extends AppCompatActivity {
         editor.apply();
 
         startActivity(new Intent(Settings.this,LayoutOneActivity.class));
+    }
+
+    public void restoreCheckBoxState() {
+        HashSet<String> set = new HashSet<>();
+        for(String s : checkedItem) set.add(s.toLowerCase());
+
+        if(set.contains("codeforces")) cforces.setChecked(true);
+        else cforces.setChecked(false);
+
+        if(set.contains("codechef")) cchef.setChecked(true);
+        else cchef.setChecked(false);
+
+        if(set.contains("hackerrank")) hrank.setChecked(true);
+        else hrank.setChecked(false);
+
+        if(set.contains("hackerearth")) hearth.setChecked(true);
+        else hearth.setChecked(false);
+
+        if(set.contains("spoj")) spoj.setChecked(true);
+        else spoj.setChecked(false);
+
+        if(set.contains("atcoder")) atcoder.setChecked(true);
+        else atcoder.setChecked(false);
     }
 }
