@@ -64,7 +64,7 @@ public class Settings extends AppCompatActivity {
         Gson gson = new Gson();
         SharedPreferences.Editor editor = preferences.edit();
         String text = gson.toJson(checkedItem);
-        editor.putString("activeTabs",text);
+        editor.putString(LIST_KEY,text);
         editor.apply();
 
         startActivity(new Intent(Settings.this,LayoutOneActivity.class));
