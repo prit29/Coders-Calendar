@@ -25,10 +25,6 @@
     <string name="change_layout">Change Layout</string>
     <string name="communicate">Communicate</string>
 
-    <string name="contest_platforms">Contest Platforms</string>
-    <string name="time_format">Time Format</string>
-    <string name="hr_12_format">12-hour</string>
-    <string name="hr_24_format">24-hour</string>
     <string name="set_notification">Set Notification</string>
     <string name="set_reminder">Set Reminder</string>
     <string name="start"><u>START</u></string>
