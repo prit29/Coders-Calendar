@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,9 +16,11 @@ import android.view.View;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.gson.Gson;
 import com.noobsever.codingcontests.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LayoutOneActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -25,6 +29,9 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
     DrawerLayout mDrawerOne;
     TabLayout mTabLayout;
     ArrayList<String> mTabItemList;
+    SharedPreferences preferences;
+    final String LIST_KEY = "LIST_KEY";
+    final String SHARED_PREFERENCE_KEY = "SHARED_PREFERENCE_KEY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +45,22 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
 
         setSupportActionBar(mTopbarOne);
 
-        // I'm assuming we get a list of strings from Settings for now.
-        if(getIntent().getExtras() != null){
-            mTabItemList = getIntent().getExtras().getStringArrayList("TAB_ITEMS");
-        }else {
+        /** Storing an ArrayList in SharedPreference using Gson.
+         *  Reference : https://stackoverflow.com/a/27872280/13803511 */
+
+        preferences = getSharedPreferences(SHARED_PREFERENCE_KEY,MODE_PRIVATE);
+
+        try {
+            Gson gson = new Gson();
+            String jsonText = preferences.getString(LIST_KEY, null);
+            String[] text = gson.fromJson(jsonText, String[].class); // could be null
+            mTabItemList = new ArrayList<>();
+            mTabItemList.addAll(Arrays.asList(text));
+
+        }catch (NullPointerException e) {
+            e.printStackTrace();
+
+            // Displays all tabs by Default.
             mTabItemList = new ArrayList<>();
             mTabItemList.add("Codeforces");
             mTabItemList.add("Codechef");
@@ -50,6 +69,7 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
             mTabItemList.add("SPOJ");
             mTabItemList.add("AtCoder");
         }
+
         addTabs(); // Populate the tabs.
 
         mNavigationOne.setNavigationItemSelectedListener(this);

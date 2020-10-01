@@ -3,18 +3,23 @@ package com.noobsever.codingcontests.Screens;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.CheckBox;
 
+import com.google.gson.Gson;
 import com.noobsever.codingcontests.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Settings extends AppCompatActivity {
 
     CheckBox cforces,cchef,hrank,hearth,spoj,atcoder;
     ArrayList<String> checkedItem;
+    SharedPreferences preferences;
+    final String SHARED_PREFERENCE_KEY = "SHARED_PREFERENCE_KEY";
+    final String LIST_KEY = "LIST_KEY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +27,18 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         checkedItem = new ArrayList<>();
+
+        preferences = getSharedPreferences(SHARED_PREFERENCE_KEY,MODE_PRIVATE);
+
+        try {
+            Gson gson = new Gson();
+            String jsonText = preferences.getString(LIST_KEY, null);
+            String[] text = gson.fromJson(jsonText, String[].class);  // can be null
+            checkedItem.addAll(Arrays.asList(text));
+
+        }catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
         cforces = findViewById(R.id.cb_codeforces);
         cchef = findViewById(R.id.cb_codechef);
@@ -34,9 +51,9 @@ public class Settings extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        /** Temporary code to get the project moving. Spaghetti code ALERT! */
 
-        Log.i("debug","going good");
+        checkedItem.clear();
+
         if(cforces.isChecked()) checkedItem.add("Codeforces");
         if(cchef.isChecked()) checkedItem.add("Codechef");
         if(hrank.isChecked()) checkedItem.add("HackerRank");
@@ -44,8 +61,12 @@ public class Settings extends AppCompatActivity {
         if(spoj.isChecked()) checkedItem.add("SPOJ");
         if(atcoder.isChecked()) checkedItem.add("AtCoder");
 
-        Intent i = new Intent(Settings.this,LayoutOneActivity.class);
-        i.putStringArrayListExtra("TAB_ITEMS",checkedItem);
-        startActivity(i);
+        Gson gson = new Gson();
+        SharedPreferences.Editor editor = preferences.edit();
+        String text = gson.toJson(checkedItem);
+        editor.putString("activeTabs",text);
+        editor.apply();
+
+        startActivity(new Intent(Settings.this,LayoutOneActivity.class));
     }
 }
