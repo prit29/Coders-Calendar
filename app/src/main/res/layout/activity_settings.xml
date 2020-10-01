@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Screens.Settings"
+    android:orientation="vertical"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="@string/contest_platforms"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"/>
+
+    <CheckBox
+        android:id="@+id/cb_codeforces"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:textSize="18sp"
+        android:text="@string/codeforces"/>
+    <CheckBox
+        android:id="@+id/cb_codechef"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:textSize="18sp"
+        android:text="@string/codechef"/>
+    <CheckBox
+        android:id="@+id/cb_hackerrank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:textSize="18sp"
+        android:text="@string/hackerrank"/>
+    <CheckBox
+        android:id="@+id/cb_hackerearth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:textSize="18sp"
+        android:text="@string/hackerearth"/>
+    <CheckBox
+        android:id="@+id/cb_spoj"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:textSize="18sp"
+        android:text="@string/spoj"/>
+    <CheckBox
+        android:id="@+id/cb_atcoder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:textSize="18sp"
+        android:text="@string/atcoder"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="@string/time_format"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:layout_marginTop="10dp"
+        android:id="@+id/switch_12_time_format"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:textSize="18sp"
+        android:text="@string/hr_12_format"/>
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_24_time_format"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:textSize="18sp"
+        android:text="@string/hr_24_format"/>
+
+
+</LinearLayout>
