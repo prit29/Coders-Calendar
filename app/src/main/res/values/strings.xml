@@ -33,4 +33,14 @@
     <string name="set_reminder">Set Reminder</string>
     <string name="start"><u>START</u></string>
     <string name="end"><u>END</u></string>
+    <string name="notification">Notifications</string>
+    <string name="enable_notif">Enable Notifications</string>
+    <string name="week_1">1 week</string>
+    <string name="week_2">2 weeks</string>
+    <string name="month_1">1 month</string>
+    <string name="contest_duration">Contest Duration</string>
+    <string name="contest_platforms">Contest Platforms</string>
+    <string name="time_format">Time Format</string>
+    <string name="hr_12_format">12-hour</string>
+    <string name="hr_24_format">24-hour</string>
 </resources>
