@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item1"
+        android:enabled="true"
+        android:icon="@drawable/ic_short"
+        android:title="@string/short_cont"/>
+    <item
+        android:id="@+id/item2"
+        android:enabled="true"
+        android:icon="@drawable/ic_long"
+        android:title="@string/long_cont"/>
+    <item
+        android:id="@+id/item3"
+        android:enabled="true"
+        android:icon="@drawable/ic_live"
+        android:title="@string/live_cont"/>
+</menu>

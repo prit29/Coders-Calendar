@@ -24,4 +24,10 @@
     <string name="search">Search</string>
     <string name="change_layout">Change Layout</string>
     <string name="communicate">Communicate</string>
+    <string name="item_1">Item 1</string>
+    <string name="item_2">Item 2</string>
+    <string name="item_3">Item 3</string>
+    <string name="live_cont">Live</string>
+    <string name="long_cont">Long</string>
+    <string name="short_cont">Short</string>
 </resources>
