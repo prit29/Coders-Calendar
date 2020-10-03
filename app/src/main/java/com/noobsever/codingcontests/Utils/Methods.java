@@ -20,4 +20,28 @@ class Methods {
     {
         return context.getSharedPreferences(key,Context.MODE_PRIVATE);
     }
+    public static void setPreferences(Context context, String sharedPreferenceKey, String storeKey, String value)                           //Function to store a String in SharedPreferences
+    {
+        SharedPreferences.Editor sharedPreferencesEditor = context.getSharedPreferences(sharedPreferenceKey,Context.MODE_PRIVATE).edit();
+        sharedPreferencesEditor.putString(storeKey,value);
+        sharedPreferencesEditor.apply();
+    }
+    public static void setPreferences(Context context, String sharedPreferenceKey, String storeKey, int value)                 // Function to store an integer value in SharedPreferences
+    {
+        SharedPreferences.Editor sharedPreferencesEditor = context.getSharedPreferences(sharedPreferenceKey,Context.MODE_PRIVATE).edit();
+        sharedPreferencesEditor.putInt(storeKey,value);
+        sharedPreferencesEditor.apply();
+    }
+    public static void setPreferences(Context context, String sharedPreferenceKey, String storeKey, float value)                            //Function to store a floating point value in SharedPreferences
+    {
+        SharedPreferences.Editor sharedPreferencesEditor = context.getSharedPreferences(sharedPreferenceKey,Context.MODE_PRIVATE).edit();
+        sharedPreferencesEditor.putFloat(storeKey,value);
+        sharedPreferencesEditor.apply();
+    }
+    public static void setPreferences(Context context, String sharedPreferenceKey, String storeKey, long value)                              // Function to store a long value in SharedPreferences
+    {
+        SharedPreferences.Editor sharedPreferencesEditor = context.getSharedPreferences(sharedPreferenceKey,Context.MODE_PRIVATE).edit();
+        sharedPreferencesEditor.putLong(storeKey,value);
+        sharedPreferencesEditor.apply();
+    }
 }
