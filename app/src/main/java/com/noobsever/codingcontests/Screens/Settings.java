@@ -56,12 +56,12 @@ public class Settings extends AppCompatActivity {
         super.onBackPressed();
         checkedItem.clear();
 
-        if(cforces.isChecked()) checkedItem.add("Codeforces");
-        if(cchef.isChecked()) checkedItem.add("Codechef");
-        if(hrank.isChecked()) checkedItem.add("HackerRank");
-        if(hearth.isChecked()) checkedItem.add("HackerEarth");
-        if(spoj.isChecked()) checkedItem.add("SPOJ");
-        if(atcoder.isChecked()) checkedItem.add("AtCoder");
+        if(cforces.isChecked()) checkedItem.add(Constants.CODEFORCES);
+        if(cchef.isChecked()) checkedItem.add(Constants.CODECHEF);
+        if(hrank.isChecked()) checkedItem.add(Constants.HACKERRANK);
+        if(hearth.isChecked()) checkedItem.add(Constants.HACKEREARTH);
+        if(spoj.isChecked()) checkedItem.add(Constants.SPOJ);
+        if(atcoder.isChecked()) checkedItem.add(Constants.ATCODER);
 
         Gson gson = new Gson();
         SharedPreferences.Editor editor = preferences.edit();
@@ -76,24 +76,24 @@ public class Settings extends AppCompatActivity {
 
     public void restoreCheckBoxState() {
         HashSet<String> set = new HashSet<>();
-        for(String s : checkedItem) set.add(s.toLowerCase());
+        for(String s : checkedItem) set.add(s);
 
-        if(set.contains("codeforces")) cforces.setChecked(true);
+        if(set.contains(Constants.CODEFORCES)) cforces.setChecked(true);
         else cforces.setChecked(false);
 
-        if(set.contains("codechef")) cchef.setChecked(true);
+        if(set.contains(Constants.CODECHEF)) cchef.setChecked(true);
         else cchef.setChecked(false);
 
-        if(set.contains("hackerrank")) hrank.setChecked(true);
+        if(set.contains(Constants.HACKERRANK)) hrank.setChecked(true);
         else hrank.setChecked(false);
 
-        if(set.contains("hackerearth")) hearth.setChecked(true);
+        if(set.contains(Constants.HACKEREARTH)) hearth.setChecked(true);
         else hearth.setChecked(false);
 
-        if(set.contains("spoj")) spoj.setChecked(true);
+        if(set.contains(Constants.SPOJ)) spoj.setChecked(true);
         else spoj.setChecked(false);
 
-        if(set.contains("atcoder")) atcoder.setChecked(true);
+        if(set.contains(Constants.ATCODER)) atcoder.setChecked(true);
         else atcoder.setChecked(false);
     }
 
