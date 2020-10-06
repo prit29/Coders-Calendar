@@ -18,6 +18,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.noobsever.codingcontests.R;
+import com.noobsever.codingcontests.Utils.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,11 +31,10 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
     TabLayout mTabLayout;
     ArrayList<String> mTabItemList;
     SharedPreferences preferences;
-    final String LIST_KEY = "LIST_KEY";
-    final String SHARED_PREFERENCE_KEY = "SHARED_PREFERENCE_KEY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_layout_one);
 
@@ -48,26 +48,32 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
         /** Storing an ArrayList in SharedPreference using Gson.
          *  Reference : https://stackoverflow.com/a/27872280/13803511 */
 
-        preferences = getSharedPreferences(SHARED_PREFERENCE_KEY,MODE_PRIVATE);
+        preferences = getSharedPreferences(Constants.TAB_ITEMS_PREFERENCES_KEY,MODE_PRIVATE);
 
         try {
             Gson gson = new Gson();
-            String jsonText = preferences.getString(LIST_KEY, null);
+            String jsonText = preferences.getString(Constants.TAB_ITEMS_ARRAYLIST_KEY, null);
             String[] text = gson.fromJson(jsonText, String[].class); // could be null
             mTabItemList = new ArrayList<>();
             mTabItemList.addAll(Arrays.asList(text));
 
         }catch (NullPointerException e) {
             e.printStackTrace();
-
             // Displays all tabs by Default.
             mTabItemList = new ArrayList<>();
-            mTabItemList.add("Codeforces");
-            mTabItemList.add("Codechef");
-            mTabItemList.add("HackerRank");
-            mTabItemList.add("HackerEarth");
-            mTabItemList.add("SPOJ");
-            mTabItemList.add("AtCoder");
+            mTabItemList.add(Constants.CODEFORCES);
+            mTabItemList.add(Constants.CODECHEF);
+            mTabItemList.add(Constants.HACKERRANK);
+            mTabItemList.add(Constants.HACKEREARTH);
+            mTabItemList.add(Constants.SPOJ);
+            mTabItemList.add(Constants.ATCODER);
+
+            // Bug fixed below : When App launches for first time Setting checkboxes remaining unmarked.
+            Gson gson = new Gson();
+            SharedPreferences.Editor editor = preferences.edit();
+            String text = gson.toJson(mTabItemList);
+            editor.putString(Constants.TAB_ITEMS_ARRAYLIST_KEY,text);
+            editor.apply();
         }
 
         addTabs(); // Populate the tabs.
