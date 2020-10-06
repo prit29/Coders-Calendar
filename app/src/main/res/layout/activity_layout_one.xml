@@ -165,6 +165,13 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+<!--            <Button-->
+<!--                android:id="@+id/switchLayout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:onClick="onClickSwitchLayout"-->
+<!--                android:text="@string/switchLayout" />-->
+
         </LinearLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

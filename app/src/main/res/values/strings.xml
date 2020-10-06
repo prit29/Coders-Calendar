@@ -24,7 +24,8 @@
     <string name="search">Search</string>
     <string name="change_layout">Change Layout</string>
     <string name="communicate">Communicate</string>
-
+    <string name="layout2_tempText">You\'re viewing screen-2 !</string>
+    <string name="switchLayout">Switch Layout</string>
     <string name="set_notification">Set Notification</string>
     <string name="set_reminder">Set Reminder</string>
     <string name="start"><u>START</u></string>

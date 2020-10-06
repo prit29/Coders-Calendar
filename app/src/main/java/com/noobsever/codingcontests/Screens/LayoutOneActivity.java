@@ -22,6 +22,9 @@ import com.noobsever.codingcontests.R;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.noobsever.codingcontests.Screens.SplashScreenActivity.SHARED_PREFS;
+import static com.noobsever.codingcontests.Screens.SplashScreenActivity.lastActivity;
+
 public class LayoutOneActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     NavigationView mNavigationOne;
@@ -83,7 +86,7 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
         mToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.design_default_color_on_primary));
         mDrawerOne.addDrawerListener(mToggle);
         mToggle.syncState();
-
+        saveActivity();
     }
 
     @Override
@@ -127,5 +130,17 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
         for(String s : mTabItemList) {
             mTabLayout.addTab(mTabLayout.newTab().setText(s));
         }
+    }
+
+//    public void onClickSwitchLayout(View view) {                                        //  Function to switch layout.
+//        Intent intent = new Intent(this, LayoutTwoActivity.class);
+//        startActivity(intent);
+//    }
+
+    public void saveActivity() {                                                        //  Function to remember the current activity.
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(lastActivity, "1");
+        editor.apply();
     }
 }
