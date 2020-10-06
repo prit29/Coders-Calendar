@@ -8,10 +8,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
@@ -19,12 +21,15 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Constants;
+import com.noobsever.codingcontests.Utils.Methods;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LayoutOneActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+    boolean doubleBackPressExitOnce = false;
     NavigationView mNavigationOne;
     MaterialToolbar mTopbarOne;
     DrawerLayout mDrawerOne;
@@ -133,5 +138,21 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
         for(String s : mTabItemList) {
             mTabLayout.addTab(mTabLayout.newTab().setText(s));
         }
+    }
+    @Override
+    public void onBackPressed() {
+        if(doubleBackPressExitOnce)
+        {
+            super.onBackPressed();
+            return;
+        }
+        this.doubleBackPressExitOnce = true;
+        Methods.showToast(this,"Press Back Again to Exit");
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackPressExitOnce = false;
+            }
+        },2000);
     }
 }

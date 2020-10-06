@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
-class Methods {
+public class Methods {
 
     /**Function to show short Toast message*/
     public static void showToast(Context context, String message)
