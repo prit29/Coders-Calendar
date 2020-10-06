@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.CheckBox;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.noobsever.codingcontests.R;
 
@@ -28,7 +29,6 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         checkedItem = new ArrayList<>();
-
         preferences = getSharedPreferences(SHARED_PREFERENCE_KEY,MODE_PRIVATE);
 
         try {
@@ -53,7 +53,7 @@ public class Settings extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
+        super.onBackPressed();
         checkedItem.clear();
 
         if(cforces.isChecked()) checkedItem.add("Codeforces");
@@ -70,6 +70,8 @@ public class Settings extends AppCompatActivity {
         editor.apply();
 
         startActivity(new Intent(Settings.this,LayoutOneActivity.class));
+        finishAffinity();
+
     }
 
     public void restoreCheckBoxState() {
@@ -94,4 +96,5 @@ public class Settings extends AppCompatActivity {
         if(set.contains("atcoder")) atcoder.setChecked(true);
         else atcoder.setChecked(false);
     }
+
 }
