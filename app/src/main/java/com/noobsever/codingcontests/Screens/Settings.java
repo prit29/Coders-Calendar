@@ -10,6 +10,7 @@ import android.widget.CheckBox;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.noobsever.codingcontests.R;
+import com.noobsever.codingcontests.Utils.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,8 +21,6 @@ public class Settings extends AppCompatActivity {
     CheckBox cforces,cchef,hrank,hearth,spoj,atcoder;
     ArrayList<String> checkedItem;
     SharedPreferences preferences;
-    final String SHARED_PREFERENCE_KEY = "SHARED_PREFERENCE_KEY";
-    final String LIST_KEY = "LIST_KEY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +28,12 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         checkedItem = new ArrayList<>();
-        preferences = getSharedPreferences(SHARED_PREFERENCE_KEY,MODE_PRIVATE);
+      
+        preferences = getSharedPreferences(Constants.TAB_ITEMS_PREFERENCES_KEY,MODE_PRIVATE);
 
         try {
             Gson gson = new Gson();
-            String jsonText = preferences.getString(LIST_KEY, null);
+            String jsonText = preferences.getString(Constants.TAB_ITEMS_ARRAYLIST_KEY, null);
             String[] text = gson.fromJson(jsonText, String[].class);  // can be null
             checkedItem.addAll(Arrays.asList(text));
 
@@ -56,17 +56,17 @@ public class Settings extends AppCompatActivity {
         super.onBackPressed();
         checkedItem.clear();
 
-        if(cforces.isChecked()) checkedItem.add("Codeforces");
-        if(cchef.isChecked()) checkedItem.add("Codechef");
-        if(hrank.isChecked()) checkedItem.add("HackerRank");
-        if(hearth.isChecked()) checkedItem.add("HackerEarth");
-        if(spoj.isChecked()) checkedItem.add("SPOJ");
-        if(atcoder.isChecked()) checkedItem.add("AtCoder");
+        if(cforces.isChecked()) checkedItem.add(Constants.CODEFORCES);
+        if(cchef.isChecked()) checkedItem.add(Constants.CODECHEF);
+        if(hrank.isChecked()) checkedItem.add(Constants.HACKERRANK);
+        if(hearth.isChecked()) checkedItem.add(Constants.HACKEREARTH);
+        if(spoj.isChecked()) checkedItem.add(Constants.SPOJ);
+        if(atcoder.isChecked()) checkedItem.add(Constants.ATCODER);
 
         Gson gson = new Gson();
         SharedPreferences.Editor editor = preferences.edit();
         String text = gson.toJson(checkedItem);
-        editor.putString(LIST_KEY,text);
+        editor.putString(Constants.TAB_ITEMS_ARRAYLIST_KEY,text);
         editor.apply();
 
         startActivity(new Intent(Settings.this,LayoutOneActivity.class));
@@ -76,24 +76,24 @@ public class Settings extends AppCompatActivity {
 
     public void restoreCheckBoxState() {
         HashSet<String> set = new HashSet<>();
-        for(String s : checkedItem) set.add(s.toLowerCase());
+        for(String s : checkedItem) set.add(s);
 
-        if(set.contains("codeforces")) cforces.setChecked(true);
+        if(set.contains(Constants.CODEFORCES)) cforces.setChecked(true);
         else cforces.setChecked(false);
 
-        if(set.contains("codechef")) cchef.setChecked(true);
+        if(set.contains(Constants.CODECHEF)) cchef.setChecked(true);
         else cchef.setChecked(false);
 
-        if(set.contains("hackerrank")) hrank.setChecked(true);
+        if(set.contains(Constants.HACKERRANK)) hrank.setChecked(true);
         else hrank.setChecked(false);
 
-        if(set.contains("hackerearth")) hearth.setChecked(true);
+        if(set.contains(Constants.HACKEREARTH)) hearth.setChecked(true);
         else hearth.setChecked(false);
 
-        if(set.contains("spoj")) spoj.setChecked(true);
+        if(set.contains(Constants.SPOJ)) spoj.setChecked(true);
         else spoj.setChecked(false);
 
-        if(set.contains("atcoder")) atcoder.setChecked(true);
+        if(set.contains(Constants.ATCODER)) atcoder.setChecked(true);
         else atcoder.setChecked(false);
     }
 
