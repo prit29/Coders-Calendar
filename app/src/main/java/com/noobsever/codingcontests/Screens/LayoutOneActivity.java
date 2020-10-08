@@ -4,14 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.cardview.widget.CardView;
 
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.noobsever.codingcontests.R;
@@ -24,9 +21,6 @@ import java.util.Arrays;
 public class LayoutOneActivity extends BaseActivity{
 
     boolean doubleBackPressExitOnce = false;
-    //NavigationView mNavigationOne;
-    MaterialToolbar mTopbarOne;
-   // DrawerLayout mDrawerOne;
     TabLayout mTabLayout;
     ArrayList<String> mTabItemList;
     SharedPreferences preferences;
@@ -39,13 +33,8 @@ public class LayoutOneActivity extends BaseActivity{
         FrameLayout content = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_layout_one, content);
 
-
-       // mNavigationOne = findViewById(R.id.navigation_one);
-       // mTopbarOne = findViewById(R.id.top_bar_one);
-      //  mDrawerOne = findViewById(R.id.drawer_one);
         mTabLayout = findViewById(R.id.tab_layout);
 
-       // setSupportActionBar(mTopbarOne);
 
         //sample temporary code for testing
         card= findViewById(R.id.sample_card);
@@ -90,56 +79,8 @@ public class LayoutOneActivity extends BaseActivity{
 
         addTabs(); // Populate the tabs.
 
-     //   mNavigationOne.setNavigationItemSelectedListener(this);
-
-//        ActionBarDrawerToggle mToggle = new ActionBarDrawerToggle(this, mDrawerOne, mTopbarOne,
-//                R.string.navigation_drawer_open, R.string.navigation_drawer_close){
-//            public void onDrawerClosed(View view) {
-//                super.onDrawerClosed(view);
-//            }
-//        };
-//        mToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.design_default_color_on_primary));
-//        mDrawerOne.addDrawerListener(mToggle);
-//        mToggle.syncState();
-
     }
 
-//
-//    @Override
-//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.nav_settings:
-//                //mDrawerOne.closeDrawer(GravityCompat.START);
-//                startActivity(new Intent(this,Settings.class));
-//                break;
-//            case R.id.nav_notifications:
-//
-//                break;
-//             //add for all menu options
-//        }
-//        return true;
-//    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.appbar_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_layout:
-                // add action
-                break;
-            case R.id.menu_search:
-                // add action
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        return true;
-    }
 
     public void addTabs() {
         // Using a list of strings to dynamically add tabs.
