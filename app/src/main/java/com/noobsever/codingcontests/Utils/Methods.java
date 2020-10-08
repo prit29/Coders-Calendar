@@ -92,7 +92,7 @@ public class Methods {
         sharedPreferencesEditor.apply();
     }
 
-    /** Method below is intended to return a List<String> for fetching the SharedPreferences*/
+    /** Method below is intended to return a List<String> for fetching the SharedPreferences */
     public static List<String> fetchTabItems(Context context) {
         ArrayList<String> savedTabItems = new ArrayList<>();
 
@@ -105,6 +105,8 @@ public class Methods {
         return savedTabItems;
     }
 
+
+    /** Method below is intended to update the List of tab items in the SharedPreferences */
     public static void saveTabItems(Context context, List<String> list) {
         Gson gson = new Gson();
         SharedPreferences preferences = context.getSharedPreferences(Constants.TAB_ITEMS_PREFERENCES_KEY,Context.MODE_PRIVATE);
