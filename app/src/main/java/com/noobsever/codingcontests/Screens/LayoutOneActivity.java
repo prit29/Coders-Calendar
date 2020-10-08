@@ -6,26 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.google.gson.Gson;
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Constants;
 import com.noobsever.codingcontests.Utils.Methods;
-
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class LayoutOneActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -35,7 +28,6 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
     DrawerLayout mDrawerOne;
     TabLayout mTabLayout;
     ArrayList<String> mTabItemList;
-    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +45,8 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
         /** Storing an ArrayList in SharedPreference using Gson.
          *  Reference : https://stackoverflow.com/a/27872280/13803511 */
 
-        preferences = getSharedPreferences(Constants.TAB_ITEMS_PREFERENCES_KEY,MODE_PRIVATE);
-
         try {
-            Gson gson = new Gson();
-            String jsonText = preferences.getString(Constants.TAB_ITEMS_ARRAYLIST_KEY, null);
-            String[] text = gson.fromJson(jsonText, String[].class); // could be null
-            mTabItemList = new ArrayList<>();
-            mTabItemList.addAll(Arrays.asList(text));
+            mTabItemList = (ArrayList<String>) Methods.fetchTabItems(this);
 
         }catch (NullPointerException e) {
             e.printStackTrace();
@@ -74,11 +60,7 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
             mTabItemList.add(Constants.ATCODER);
 
             // Bug fixed below : When App launches for first time Setting checkboxes remaining unmarked.
-            Gson gson = new Gson();
-            SharedPreferences.Editor editor = preferences.edit();
-            String text = gson.toJson(mTabItemList);
-            editor.putString(Constants.TAB_ITEMS_ARRAYLIST_KEY,text);
-            editor.apply();
+            Methods.saveTabItems(this,mTabItemList);
         }
 
         addTabs(); // Populate the tabs.

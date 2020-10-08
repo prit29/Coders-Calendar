@@ -4,6 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Methods {
 
     /**Function to show short Toast message*/
@@ -84,5 +90,28 @@ public class Methods {
         SharedPreferences.Editor sharedPreferencesEditor = context.getSharedPreferences(sharedPreferenceKey,Context.MODE_PRIVATE).edit();
         sharedPreferencesEditor.putLong(storeKey,value);
         sharedPreferencesEditor.apply();
+    }
+
+    /** Method below is intended to return a List<String> for fetching the SharedPreferences */
+    public static List<String> fetchTabItems(Context context) {
+        ArrayList<String> savedTabItems = new ArrayList<>();
+
+        SharedPreferences preferences = context.getSharedPreferences(Constants.TAB_ITEMS_PREFERENCES_KEY,Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String jsonText = preferences.getString(Constants.TAB_ITEMS_ARRAYLIST_KEY, null);
+        String[] text = gson.fromJson(jsonText, String[].class);
+        savedTabItems.addAll(Arrays.asList(text));
+
+        return savedTabItems;
+    }
+
+    /** Method below is intended to update the List of tab items in the SharedPreferences */
+    public static void saveTabItems(Context context, List<String> list) {
+        Gson gson = new Gson();
+        SharedPreferences preferences = context.getSharedPreferences(Constants.TAB_ITEMS_PREFERENCES_KEY,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        String text = gson.toJson(list);
+        editor.putString(Constants.TAB_ITEMS_ARRAYLIST_KEY,text);
+        editor.apply();
     }
 }
