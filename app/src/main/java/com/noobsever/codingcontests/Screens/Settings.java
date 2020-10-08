@@ -11,6 +11,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Constants;
+import com.noobsever.codingcontests.Utils.Methods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +21,6 @@ public class Settings extends AppCompatActivity {
 
     CheckBox cforces,cchef,hrank,hearth,spoj,atcoder;
     ArrayList<String> checkedItem;
-    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +28,9 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         checkedItem = new ArrayList<>();
-      
-        preferences = getSharedPreferences(Constants.TAB_ITEMS_PREFERENCES_KEY,MODE_PRIVATE);
 
         try {
-            Gson gson = new Gson();
-            String jsonText = preferences.getString(Constants.TAB_ITEMS_ARRAYLIST_KEY, null);
-            String[] text = gson.fromJson(jsonText, String[].class);  // can be null
-            checkedItem.addAll(Arrays.asList(text));
+            checkedItem = (ArrayList<String>) Methods.fetchTabItems(this);
 
         }catch (NullPointerException e) {
             e.printStackTrace();
@@ -63,11 +58,7 @@ public class Settings extends AppCompatActivity {
         if(spoj.isChecked()) checkedItem.add(Constants.SPOJ);
         if(atcoder.isChecked()) checkedItem.add(Constants.ATCODER);
 
-        Gson gson = new Gson();
-        SharedPreferences.Editor editor = preferences.edit();
-        String text = gson.toJson(checkedItem);
-        editor.putString(Constants.TAB_ITEMS_ARRAYLIST_KEY,text);
-        editor.apply();
+        Methods.saveTabItems(this,checkedItem);
 
         startActivity(new Intent(Settings.this,LayoutOneActivity.class));
         finishAffinity();
