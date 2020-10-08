@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 
 import com.google.gson.Gson;
 import com.noobsever.codingcontests.R;
+import com.noobsever.codingcontests.Utils.Methods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,7 +70,7 @@ public class Settings extends AppCompatActivity {
         editor.putString(LIST_KEY,text);
         editor.apply();
 
-        startActivity(new Intent(Settings.this,LayoutOneActivity.class));
+        finish();
     }
 
     public void restoreCheckBoxState() {

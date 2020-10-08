@@ -3,16 +3,15 @@ package com.noobsever.codingcontests.Screens;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
 import com.noobsever.codingcontests.R;
+import com.noobsever.codingcontests.Utils.Methods;
 
 public class SplashScreenActivity extends AppCompatActivity {
-    public static final String SHARED_PREFS = "sharedPrefs";
-    public static final String lastActivity = "0";
-    public static String previousActivity = "1";
+    public static final String SHARED_PREFERENCE_KEY = "SHARED_PREFERENCE_KEY";
+    public static String lastActivity = "lastActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +19,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(
                 R.layout.activity_splash_screen);
 
-        loadLastActivity();
-
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                if(previousActivity.equals("1"))                                        //  Opening the lastly closed activity.
+                int previousActivity = loadActivity();
+                if(previousActivity==1 || previousActivity==0)
                     startActivity(new Intent(SplashScreenActivity.this, LayoutOneActivity.class));
                 else
                     startActivity(new Intent(SplashScreenActivity.this, LayoutTwoActivity.class));
@@ -33,8 +31,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         }, 2000);
     }
 
-    public void loadLastActivity() {                                                    //  Function to get to know the lastly closed activity.
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        previousActivity = sharedPreferences.getString(lastActivity, "1");
+    int loadActivity() {                                                                //  Function to get the last opened activity.
+        return Methods.getIntPreferences(getApplicationContext(), SHARED_PREFERENCE_KEY, lastActivity);
     }
 }

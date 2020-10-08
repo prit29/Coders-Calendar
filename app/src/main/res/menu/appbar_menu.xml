@@ -10,6 +10,7 @@
     <item
         android:id="@+id/menu_layout"
         android:icon="@drawable/ic_baseline_layers_24"
+        android:onClick="switchLayout"
         android:title="@string/change_layout"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
 </menu>

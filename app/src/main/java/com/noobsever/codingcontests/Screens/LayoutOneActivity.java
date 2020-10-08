@@ -8,7 +8,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,11 +17,12 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.noobsever.codingcontests.R;
+import com.noobsever.codingcontests.Utils.Methods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static com.noobsever.codingcontests.Screens.SplashScreenActivity.SHARED_PREFS;
+import static com.noobsever.codingcontests.Screens.SplashScreenActivity.SHARED_PREFERENCE_KEY;
 import static com.noobsever.codingcontests.Screens.SplashScreenActivity.lastActivity;
 
 public class LayoutOneActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -34,7 +34,7 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
     ArrayList<String> mTabItemList;
     SharedPreferences preferences;
     final String LIST_KEY = "LIST_KEY";
-    final String SHARED_PREFERENCE_KEY = "SHARED_PREFERENCE_KEY";
+//    final String SHARED_PREFERENCE_KEY = "SHARED_PREFERENCE_KEY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +90,12 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
     }
 
     @Override
+    protected void onResume() {
+        saveActivity();
+        super.onResume();
+    }
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_settings:
@@ -132,15 +138,12 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
         }
     }
 
-//    public void onClickSwitchLayout(View view) {                                        //  Function to switch layout.
-//        Intent intent = new Intent(this, LayoutTwoActivity.class);
-//        startActivity(intent);
-//    }
+    public void saveActivity() {                                                        //  Function to remember current activity.
+        Methods.setPreferences(this, SHARED_PREFERENCE_KEY, lastActivity, 1);
+    }
 
-    public void saveActivity() {                                                        //  Function to remember the current activity.
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(lastActivity, "1");
-        editor.apply();
+    public void switchLayout(MenuItem item) {                                           //  Function to switch between layouts.
+        Intent intent = new Intent(this, LayoutTwoActivity.class);
+        startActivity(intent);
     }
 }
