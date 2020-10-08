@@ -82,6 +82,12 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
 
         addTabs(); // Populate the tabs.
 
+        /** Setting up View Pager and attaching fragments */
+        mTabLayout.setupWithViewPager(mViewPager);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),0);
+        viewPagerAdapter.initFragments(mTabItemList);
+        mViewPager.setAdapter(viewPagerAdapter);
+
         mNavigationOne.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle mToggle = new ActionBarDrawerToggle(this, mDrawerOne, mTopbarOne,
@@ -94,17 +100,6 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
         mDrawerOne.addDrawerListener(mToggle);
         mToggle.syncState();
 
-        codeforces_fragment = new Codeforces_Fragment();
-        coodechef_fragment = new Coodechef_Fragment();
-        hackerEarth_fragment = new HackerEarth_Fragment();
-        hackerRank_fragment = new HackerRank_Fragment();
-        spoj_fragment = new SPOJ_Fragment();
-        atCoder_fragment = new AtCoder_Fragment();
-
-        mTabLayout.setupWithViewPager(mViewPager);
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),0);
-        viewPagerAdapter.initFragments(mTabItemList);
-        mViewPager.setAdapter(viewPagerAdapter);
     }
 
     @Override
@@ -149,6 +144,7 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
             mTabLayout.addTab(mTabLayout.newTab().setText(s));
         }
     }
+
     @Override
     public void onBackPressed() {
         if(doubleBackPressExitOnce)

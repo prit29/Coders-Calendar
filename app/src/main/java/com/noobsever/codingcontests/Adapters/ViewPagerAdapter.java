@@ -20,10 +20,11 @@ import java.util.List;
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> fragmentsList = new ArrayList<>();
-    private List<String> tabs = new ArrayList<>();
+    private List<String> fragmentTitles = new ArrayList<>();
 
+    // This method will instantiate and attach the required fragments to tabs.
     public void initFragments(List<String> fragList) {
-        this.tabs = fragList;
+        this.fragmentTitles = fragList;
         for(String s : fragList) {
             if(s.equals(Constants.CODEFORCES)) fragmentsList.add(new Codeforces_Fragment());
             else if(s.equals(Constants.CODECHEF)) fragmentsList.add(new Coodechef_Fragment());
@@ -32,6 +33,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             else if(s.equals(Constants.SPOJ)) fragmentsList.add(new SPOJ_Fragment());
             else if(s.equals(Constants.ATCODER)) fragmentsList.add(new AtCoder_Fragment());
         }
+    }
+
+    // The method below can be then used to get fragments if we need them.
+    public List<Fragment> getFragmentsList() {
+        return fragmentsList;
     }
 
     public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
@@ -52,6 +58,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return tabs.get(position);
+        return fragmentTitles.get(position);
     }
 }

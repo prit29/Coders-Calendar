@@ -24,20 +24,18 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         checkedItem = new ArrayList<>();
-
-        try {
-            checkedItem = (ArrayList<String>) Methods.fetchTabItems(this);
-
-        }catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-
         cForces = findViewById(R.id.cb_codeforces);
         cChef = findViewById(R.id.cb_codechef);
         hRank = findViewById(R.id.cb_hackerrank);
         hEarth = findViewById(R.id.cb_hackerearth);
         SPOJ = findViewById(R.id.cb_spoj);
         atCoder = findViewById(R.id.cb_atcoder);
+
+        try {
+            checkedItem = (ArrayList<String>) Methods.fetchTabItems(this);
+        }catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
         restoreCheckBoxState();
     }
