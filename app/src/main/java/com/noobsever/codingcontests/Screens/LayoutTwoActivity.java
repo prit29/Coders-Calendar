@@ -4,17 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.FrameLayout;
 
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Methods;
 
-public class LayoutTwoActivity extends AppCompatActivity {
+public class LayoutTwoActivity extends BaseActivity {
 
     boolean doubleBackPressExitOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_layout_one);
+
+        FrameLayout content = findViewById(R.id.content_frame);
+        getLayoutInflater().inflate(R.layout.activity_layout_two, content);
     }
     @Override
     public void onBackPressed() {
