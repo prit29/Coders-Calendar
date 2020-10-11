@@ -11,6 +11,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Constants;
+import com.noobsever.codingcontests.Utils.Methods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +19,7 @@ import java.util.HashSet;
 
 public class Settings extends AppCompatActivity {
 
-    CheckBox cforces,cchef,hrank,hearth,spoj,atcoder;
+    CheckBox cforces,cchef,hrank,hearth,spoj,atcoder,leetcode,google;
     ArrayList<String> checkedItem;
     SharedPreferences preferences;
 
@@ -47,6 +48,8 @@ public class Settings extends AppCompatActivity {
         hearth = findViewById(R.id.cb_hackerearth);
         spoj = findViewById(R.id.cb_spoj);
         atcoder = findViewById(R.id.cb_atcoder);
+        leetcode = findViewById(R.id.cb_leetcode);
+        google = findViewById(R.id.cb_google);
 
         restoreCheckBoxState();
     }
@@ -62,6 +65,15 @@ public class Settings extends AppCompatActivity {
         if(hearth.isChecked()) checkedItem.add(Constants.HACKEREARTH);
         if(spoj.isChecked()) checkedItem.add(Constants.SPOJ);
         if(atcoder.isChecked()) checkedItem.add(Constants.ATCODER);
+        if(leetcode.isChecked())checkedItem.add(Constants.LEETCODE);
+        if(google.isChecked())checkedItem.add(Constants.GOOGLE);
+
+        if(checkedItem.isEmpty())
+        {
+            cforces.setChecked(true);
+            checkedItem.add(Constants.CODEFORCES);
+            Methods.showToast(this,"Atleast 1 platform has to be selected");
+        }
 
         Gson gson = new Gson();
         SharedPreferences.Editor editor = preferences.edit();
@@ -95,6 +107,12 @@ public class Settings extends AppCompatActivity {
 
         if(set.contains(Constants.ATCODER)) atcoder.setChecked(true);
         else atcoder.setChecked(false);
+
+        if(set.contains(Constants.LEETCODE)) leetcode.setChecked(true);
+        else leetcode.setChecked(false);
+
+        if(set.contains(Constants.GOOGLE)) google.setChecked(true);
+        else google.setChecked(false);
     }
 
 }
