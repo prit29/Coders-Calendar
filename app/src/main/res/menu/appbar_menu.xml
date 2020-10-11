@@ -11,5 +11,6 @@
         android:id="@+id/menu_layout"
         android:icon="@drawable/ic_baseline_layers_24"
         android:title="@string/change_layout"
+        android:onClick="switchLayout"
         app:showAsAction="ifRoom"/>
 </menu>

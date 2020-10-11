@@ -1,13 +1,16 @@
 package com.noobsever.codingcontests.Screens;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Methods;
+
+import static com.noobsever.codingcontests.Screens.SplashScreenActivity.SHARED_PREFERENCE_KEY;
+import static com.noobsever.codingcontests.Screens.SplashScreenActivity.lastActivity;
 
 public class LayoutTwoActivity extends BaseActivity {
 
@@ -15,10 +18,23 @@ public class LayoutTwoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         FrameLayout content = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_layout_two, content);
+        saveActivity();
     }
+
+    public void saveActivity() {
+        Methods.setPreferences(this, SHARED_PREFERENCE_KEY, lastActivity, 2);
+    }
+
+    public void switchLayout(MenuItem item) {                                           //  Function to switch between layouts.
+        finish();
+        if(isTaskRoot()) {
+            Intent intent = new Intent(this, LayoutOneActivity.class);
+            startActivity(intent);
+        }
+    }
+
     @Override
     public void onBackPressed() {
         if(doubleBackPressExitOnce)

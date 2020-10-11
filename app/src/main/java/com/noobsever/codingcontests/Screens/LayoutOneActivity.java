@@ -3,7 +3,6 @@ package com.noobsever.codingcontests.Screens;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import android.view.View;
@@ -17,6 +16,9 @@ import com.noobsever.codingcontests.Utils.Constants;
 import com.noobsever.codingcontests.Utils.Methods;
 
 import java.util.ArrayList;
+
+import static com.noobsever.codingcontests.Screens.SplashScreenActivity.SHARED_PREFERENCE_KEY;
+import static com.noobsever.codingcontests.Screens.SplashScreenActivity.lastActivity;
 
 public class LayoutOneActivity extends BaseActivity{
 
@@ -70,6 +72,7 @@ public class LayoutOneActivity extends BaseActivity{
 
         addTabs(); // Populate the tabs.
 
+        saveActivity();
     }
 
 
@@ -79,6 +82,24 @@ public class LayoutOneActivity extends BaseActivity{
             mTabLayout.addTab(mTabLayout.newTab().setText(s));
         }
     }
+
+    //  Function to remember current activity.
+    public void saveActivity() {
+        Methods.setPreferences(this, SHARED_PREFERENCE_KEY, lastActivity, 1);
+    }
+
+    //  Function to switch between layouts.
+    public void switchLayout(MenuItem item) {
+        Intent intent = new Intent(this, LayoutTwoActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        saveActivity();
+        super.onResume();
+    }
+
     @Override
     public void onBackPressed() {
         if(doubleBackPressExitOnce)

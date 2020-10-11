@@ -66,12 +66,9 @@ public class Settings extends AppCompatActivity {
             checkedItem.add(Constants.CODEFORCES);
             Methods.showToast(this,"Atleast 1 platform has to be selected");
         }
-
-
         Methods.saveTabItems(this,checkedItem);
 
-        startActivity(new Intent(Settings.this,LayoutOneActivity.class));
-        finishAffinity();
+        finish();
     }
 
     public void restoreCheckBoxState() {
