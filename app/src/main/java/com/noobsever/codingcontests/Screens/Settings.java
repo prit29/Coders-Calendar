@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.TwoStatePreference;
 import android.widget.CheckBox;
 
 import com.noobsever.codingcontests.R;
@@ -27,13 +26,13 @@ public class Settings extends AppCompatActivity {
 
         checkedItem = new ArrayList<>();
 
-
         try {
             checkedItem = (ArrayList<String>) Methods.fetchTabItems(this);
 
         }catch (NullPointerException e) {
             e.printStackTrace();
         }
+
         cforces = findViewById(R.id.cb_codeforces);
         cchef = findViewById(R.id.cb_codechef);
         hrank = findViewById(R.id.cb_hackerrank);
