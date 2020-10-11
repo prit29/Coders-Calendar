@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.TwoStatePreference;
 import android.widget.CheckBox;
 
 import com.noobsever.codingcontests.R;
@@ -15,9 +16,9 @@ import java.util.HashSet;
 
 public class Settings extends AppCompatActivity {
 
-  
-    CheckBox cforces,cchef,hrank,hearth,spoj,atcoder,leetcode,google;
+    private CheckBox cforces,cchef,hrank,hearth,spoj,atcoder,leetcode,google;
     ArrayList<String> checkedItem;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,6 @@ public class Settings extends AppCompatActivity {
         atcoder = findViewById(R.id.cb_atcoder);
         leetcode = findViewById(R.id.cb_leetcode);
         google = findViewById(R.id.cb_google);
-
 
         restoreCheckBoxState();
     }
@@ -78,20 +78,20 @@ public class Settings extends AppCompatActivity {
         HashSet<String> set = new HashSet<>();
         for(String s : checkedItem) set.add(s);
 
-        if(set.contains(Constants.CODEFORCES)) cForces.setChecked(true);
-        else cForces.setChecked(false);
+        if(set.contains(Constants.CODEFORCES)) cforces.setChecked(true);
+        else cforces.setChecked(false);
 
-        if(set.contains(Constants.CODECHEF)) cChef.setChecked(true);
-        else cChef.setChecked(false);
+        if(set.contains(Constants.CODECHEF)) cchef.setChecked(true);
+        else cchef.setChecked(false);
 
-        if(set.contains(Constants.HACKERRANK)) hRank.setChecked(true);
-        else hRank.setChecked(false);
+        if(set.contains(Constants.HACKERRANK)) hrank.setChecked(true);
+        else hrank.setChecked(false);
 
-        if(set.contains(Constants.HACKEREARTH)) hEarth.setChecked(true);
-        else hEarth.setChecked(false);
+        if(set.contains(Constants.HACKEREARTH)) hearth.setChecked(true);
+        else hearth.setChecked(false);
 
-        if(set.contains(Constants.SPOJ)) SPOJ.setChecked(true);
-        else SPOJ.setChecked(false);
+        if(set.contains(Constants.SPOJ)) spoj.setChecked(true);
+        else spoj.setChecked(false);
 
         if(set.contains(Constants.ATCODER)) atcoder.setChecked(true);
         else atcoder.setChecked(false);
@@ -102,5 +102,7 @@ public class Settings extends AppCompatActivity {
         if(set.contains(Constants.GOOGLE)) google.setChecked(true);
         else google.setChecked(false);
     }
+
+
 
 }
