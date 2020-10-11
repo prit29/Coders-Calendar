@@ -101,8 +101,6 @@ public class LayoutTwoActivity extends AppCompatActivity implements NavigationVi
             Intent intent = new Intent(this, LayoutOneActivity.class);
             startActivity(intent);
         }
-        FrameLayout content = findViewById(R.id.content_frame);
-        getLayoutInflater().inflate(R.layout.activity_layout_two, content);
     }
       
     @Override
