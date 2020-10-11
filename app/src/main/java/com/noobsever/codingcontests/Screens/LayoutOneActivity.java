@@ -14,12 +14,6 @@ import androidx.cardview.widget.CardView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.noobsever.codingcontests.Adapters.ViewPagerAdapter;
-import com.noobsever.codingcontests.Fragments.AtCoder_Fragment;
-import com.noobsever.codingcontests.Fragments.Codeforces_Fragment;
-import com.noobsever.codingcontests.Fragments.Coodechef_Fragment;
-import com.noobsever.codingcontests.Fragments.HackerEarth_Fragment;
-import com.noobsever.codingcontests.Fragments.HackerRank_Fragment;
-import com.noobsever.codingcontests.Fragments.SPOJ_Fragment;
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Constants;
 import com.noobsever.codingcontests.Utils.Methods;
@@ -32,12 +26,6 @@ public class LayoutOneActivity extends BaseActivity{
     TabLayout mTabLayout;
     ArrayList<String> mTabItemList;
     ViewPager mViewPager;
-    Codeforces_Fragment codeforces_fragment;
-    Coodechef_Fragment coodechef_fragment;
-    HackerEarth_Fragment hackerEarth_fragment;
-    HackerRank_Fragment hackerRank_fragment;
-    SPOJ_Fragment spoj_fragment;
-    AtCoder_Fragment atCoder_fragment;
     CardView card;
 
     @Override
@@ -52,7 +40,7 @@ public class LayoutOneActivity extends BaseActivity{
 
 
         //sample temporary code for testing
-        card= findViewById(R.id.sample_card);
+        // card= findViewById(R.id.sample_card);
         card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
