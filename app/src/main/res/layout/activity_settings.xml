@@ -5,8 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".Screens.Settings"
-android:orientation="vertical"
-android:padding="8dp">
+android:orientation="vertical">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -83,6 +82,22 @@ android:padding="8dp">
                 android:textSize="18sp"
                 android:tag="@string/atcoder"
                 android:text="@string/atcoder"/>
+            <CheckBox
+                android:id="@+id/cb_leetcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textSize="18sp"
+                android:tag="@string/leetcode"
+                android:text="@string/leetcode"/>
+            <CheckBox
+                android:id="@+id/cb_google"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textSize="18sp"
+                android:tag="@string/google"
+                android:text="@string/google"/>
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
