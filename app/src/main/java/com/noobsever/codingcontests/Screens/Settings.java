@@ -3,25 +3,21 @@ package com.noobsever.codingcontests.Screens;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.CheckBox;
 
-import com.google.android.material.navigation.NavigationView;
-import com.google.gson.Gson;
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Constants;
 import com.noobsever.codingcontests.Utils.Methods;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 
 public class Settings extends AppCompatActivity {
 
+  
     CheckBox cforces,cchef,hrank,hearth,spoj,atcoder,leetcode,google;
     ArrayList<String> checkedItem;
-    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +25,9 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         checkedItem = new ArrayList<>();
-      
-        preferences = getSharedPreferences(Constants.TAB_ITEMS_PREFERENCES_KEY,MODE_PRIVATE);
 
         try {
-            Gson gson = new Gson();
-            String jsonText = preferences.getString(Constants.TAB_ITEMS_ARRAYLIST_KEY, null);
-            String[] text = gson.fromJson(jsonText, String[].class);  // can be null
-            checkedItem.addAll(Arrays.asList(text));
+            checkedItem = (ArrayList<String>) Methods.fetchTabItems(this);
 
         }catch (NullPointerException e) {
             e.printStackTrace();
@@ -50,6 +41,7 @@ public class Settings extends AppCompatActivity {
         atcoder = findViewById(R.id.cb_atcoder);
         leetcode = findViewById(R.id.cb_leetcode);
         google = findViewById(R.id.cb_google);
+
 
         restoreCheckBoxState();
     }
@@ -75,35 +67,31 @@ public class Settings extends AppCompatActivity {
             Methods.showToast(this,"Atleast 1 platform has to be selected");
         }
 
-        Gson gson = new Gson();
-        SharedPreferences.Editor editor = preferences.edit();
-        String text = gson.toJson(checkedItem);
-        editor.putString(Constants.TAB_ITEMS_ARRAYLIST_KEY,text);
-        editor.apply();
+
+        Methods.saveTabItems(this,checkedItem);
 
         startActivity(new Intent(Settings.this,LayoutOneActivity.class));
         finishAffinity();
-
     }
 
     public void restoreCheckBoxState() {
         HashSet<String> set = new HashSet<>();
         for(String s : checkedItem) set.add(s);
 
-        if(set.contains(Constants.CODEFORCES)) cforces.setChecked(true);
-        else cforces.setChecked(false);
+        if(set.contains(Constants.CODEFORCES)) cForces.setChecked(true);
+        else cForces.setChecked(false);
 
-        if(set.contains(Constants.CODECHEF)) cchef.setChecked(true);
-        else cchef.setChecked(false);
+        if(set.contains(Constants.CODECHEF)) cChef.setChecked(true);
+        else cChef.setChecked(false);
 
-        if(set.contains(Constants.HACKERRANK)) hrank.setChecked(true);
-        else hrank.setChecked(false);
+        if(set.contains(Constants.HACKERRANK)) hRank.setChecked(true);
+        else hRank.setChecked(false);
 
-        if(set.contains(Constants.HACKEREARTH)) hearth.setChecked(true);
-        else hearth.setChecked(false);
+        if(set.contains(Constants.HACKEREARTH)) hEarth.setChecked(true);
+        else hEarth.setChecked(false);
 
-        if(set.contains(Constants.SPOJ)) spoj.setChecked(true);
-        else spoj.setChecked(false);
+        if(set.contains(Constants.SPOJ)) SPOJ.setChecked(true);
+        else SPOJ.setChecked(false);
 
         if(set.contains(Constants.ATCODER)) atcoder.setChecked(true);
         else atcoder.setChecked(false);
