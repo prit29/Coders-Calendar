@@ -2,6 +2,7 @@ package com.noobsever.codingcontests.Screens;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -50,9 +51,12 @@ public class BaseActivity extends AppCompatActivity {
                         switch (item.getItemId()) {
 
                             case R.id.nav_settings:
-                                Intent settings = new Intent(getApplicationContext(), Settings.class);
-                                startActivity(settings);
                                 drawerLayout.closeDrawers();
+                                new Handler().postDelayed(new Runnable() {
+                                    public void run() {
+                                        startActivity(new Intent(getApplicationContext(), Settings.class));
+                                    }
+                                }, 500);
                                 break;
 
 
