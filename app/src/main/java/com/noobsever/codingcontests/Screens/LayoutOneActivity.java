@@ -1,76 +1,71 @@
 package com.noobsever.codingcontests.Screens;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.navigation.NavigationView;
+import android.widget.FrameLayout;
+import androidx.cardview.widget.CardView;
 import com.google.android.material.tabs.TabLayout;
-import com.google.gson.Gson;
 import com.noobsever.codingcontests.R;
+import com.noobsever.codingcontests.Utils.Constants;
 import com.noobsever.codingcontests.Utils.Methods;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import static com.noobsever.codingcontests.Screens.SplashScreenActivity.SHARED_PREFERENCE_KEY;
 import static com.noobsever.codingcontests.Screens.SplashScreenActivity.lastActivity;
 
 public class LayoutOneActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class LayoutOneActivity extends BaseActivity{
 
-    NavigationView mNavigationOne;
-    MaterialToolbar mTopbarOne;
-    DrawerLayout mDrawerOne;
+    boolean doubleBackPressExitOnce = false;
     TabLayout mTabLayout;
     ArrayList<String> mTabItemList;
     SharedPreferences preferences;
     final String LIST_KEY = "LIST_KEY";
-//    final String SHARED_PREFERENCE_KEY = "SHARED_PREFERENCE_KEY";
+    final String SHARED_PREFERENCE_KEY = "SHARED_PREFERENCE_KEY";
+    CardView card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_layout_one);
 
-        mNavigationOne = findViewById(R.id.navigation_one);
-        mTopbarOne = findViewById(R.id.top_bar_one);
-        mDrawerOne = findViewById(R.id.drawer_one);
+        FrameLayout content = findViewById(R.id.content_frame);
+        getLayoutInflater().inflate(R.layout.activity_layout_one, content);
+
         mTabLayout = findViewById(R.id.tab_layout);
 
-        setSupportActionBar(mTopbarOne);
+
+        //sample temporary code for testing
+        card= findViewById(R.id.sample_card);
+        card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LayoutOneActivity.this, LayoutTwoActivity.class);
+                startActivity(i);
+            }
+        });
 
         /** Storing an ArrayList in SharedPreference using Gson.
          *  Reference : https://stackoverflow.com/a/27872280/13803511 */
 
-        preferences = getSharedPreferences(SHARED_PREFERENCE_KEY,MODE_PRIVATE);
-
         try {
-            Gson gson = new Gson();
-            String jsonText = preferences.getString(LIST_KEY, null);
-            String[] text = gson.fromJson(jsonText, String[].class); // could be null
-            mTabItemList = new ArrayList<>();
-            mTabItemList.addAll(Arrays.asList(text));
+            mTabItemList = (ArrayList<String>) Methods.fetchTabItems(this);
 
         }catch (NullPointerException e) {
             e.printStackTrace();
-
             // Displays all tabs by Default.
             mTabItemList = new ArrayList<>();
-            mTabItemList.add("Codeforces");
-            mTabItemList.add("Codechef");
-            mTabItemList.add("HackerRank");
-            mTabItemList.add("HackerEarth");
-            mTabItemList.add("SPOJ");
-            mTabItemList.add("AtCoder");
+            mTabItemList.add(Constants.CODEFORCES);
+            mTabItemList.add(Constants.CODECHEF);
+            mTabItemList.add(Constants.HACKERRANK);
+            mTabItemList.add(Constants.HACKEREARTH);
+            mTabItemList.add(Constants.SPOJ);
+            mTabItemList.add(Constants.ATCODER);
+
+            // Bug fixed below : When App launches for first time Setting checkboxes remaining unmarked.
+            Methods.saveTabItems(this,mTabItemList);
         }
 
         addTabs(); // Populate the tabs.
@@ -110,26 +105,6 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
         return true;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.appbar_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_layout:
-                // add action
-                break;
-            case R.id.menu_search:
-                // add action
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        return true;
-    }
 
     public void addTabs() {
         // Using a list of strings to dynamically add tabs.
@@ -145,5 +120,21 @@ public class LayoutOneActivity extends AppCompatActivity implements NavigationVi
     public void switchLayout(MenuItem item) {                                           //  Function to switch between layouts.
         Intent intent = new Intent(this, LayoutTwoActivity.class);
         startActivity(intent);
+=======
+    @Override
+    public void onBackPressed() {
+        if(doubleBackPressExitOnce)
+        {
+            super.onBackPressed();
+            return;
+        }
+        this.doubleBackPressExitOnce = true;
+        Methods.showToast(this,"Press Back Again to Exit");
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackPressExitOnce = false;
+            }
+        },2000);
     }
 }

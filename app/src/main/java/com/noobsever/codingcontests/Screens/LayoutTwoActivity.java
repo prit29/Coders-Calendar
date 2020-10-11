@@ -4,19 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
+import android.os.Handler;
+import android.widget.FrameLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Methods;
-
 import static com.noobsever.codingcontests.Screens.SplashScreenActivity.SHARED_PREFERENCE_KEY;
 import static com.noobsever.codingcontests.Screens.SplashScreenActivity.lastActivity;
 
@@ -26,7 +25,9 @@ public class LayoutTwoActivity extends AppCompatActivity implements NavigationVi
     MaterialToolbar mTopbarOne;
     DrawerLayout mDrawerOne;
     SharedPreferences preferences;
+    public class LayoutTwoActivity extends BaseActivity {
 
+    boolean doubleBackPressExitOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,5 +101,24 @@ public class LayoutTwoActivity extends AppCompatActivity implements NavigationVi
             Intent intent = new Intent(this, LayoutOneActivity.class);
             startActivity(intent);
         }
+        FrameLayout content = findViewById(R.id.content_frame);
+        getLayoutInflater().inflate(R.layout.activity_layout_two, content);
+    }
+      
+    @Override
+    public void onBackPressed() {
+        if(doubleBackPressExitOnce)
+        {
+            super.onBackPressed();
+            return;
+        }
+        this.doubleBackPressExitOnce = true;
+        Methods.showToast(this,"Press Back Again to Exit");
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackPressExitOnce = false;
+            }
+        },2000);
     }
 }
