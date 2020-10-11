@@ -10,5 +10,7 @@ public class Constants {
     public static final String HACKEREARTH = "HackerEarth";
     public static final String SPOJ = "SPOJ";
     public static final String ATCODER = "AtCoder";
+    public static final String LEETCODE = "LeetCode";
+    public static final String GOOGLE = "Google Coding Competitions";
 
 }
