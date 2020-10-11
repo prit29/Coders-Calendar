@@ -9,8 +9,10 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.noobsever.codingcontests.Fragments.AtCoder_Fragment;
 import com.noobsever.codingcontests.Fragments.Codeforces_Fragment;
 import com.noobsever.codingcontests.Fragments.Coodechef_Fragment;
+import com.noobsever.codingcontests.Fragments.Google_Fragment;
 import com.noobsever.codingcontests.Fragments.HackerEarth_Fragment;
 import com.noobsever.codingcontests.Fragments.HackerRank_Fragment;
+import com.noobsever.codingcontests.Fragments.LeetCode_Fragment;
 import com.noobsever.codingcontests.Fragments.SPOJ_Fragment;
 import com.noobsever.codingcontests.Utils.Constants;
 
@@ -32,6 +34,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             else if(s.equals(Constants.HACKEREARTH)) fragmentsList.add(new HackerEarth_Fragment());
             else if(s.equals(Constants.SPOJ)) fragmentsList.add(new SPOJ_Fragment());
             else if(s.equals(Constants.ATCODER)) fragmentsList.add(new AtCoder_Fragment());
+            else if(s.equals(Constants.LEETCODE)) fragmentsList.add(new LeetCode_Fragment());
+            else if(s.equals(Constants.GOOGLE)) fragmentsList.add(new Google_Fragment());
         }
     }
 

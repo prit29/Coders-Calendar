@@ -42,6 +42,7 @@ public class Settings extends AppCompatActivity {
         atcoder = findViewById(R.id.cb_atcoder);
         leetcode = findViewById(R.id.cb_leetcode);
         google = findViewById(R.id.cb_google);
+
         restoreCheckBoxState();
     }
 

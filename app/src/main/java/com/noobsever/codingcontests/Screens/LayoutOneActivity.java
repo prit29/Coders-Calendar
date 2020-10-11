@@ -7,10 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
-
-import androidx.cardview.widget.CardView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.noobsever.codingcontests.Adapters.ViewPagerAdapter;
@@ -26,7 +24,6 @@ public class LayoutOneActivity extends BaseActivity{
     TabLayout mTabLayout;
     ArrayList<String> mTabItemList;
     ViewPager mViewPager;
-    CardView card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +35,6 @@ public class LayoutOneActivity extends BaseActivity{
         mTabLayout = findViewById(R.id.tab_layout);
         mViewPager = findViewById(R.id.viewPager);
 
-
-        //sample temporary code for testing
-        // card= findViewById(R.id.sample_card);
-        card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(LayoutOneActivity.this, LayoutTwoActivity.class);
-                startActivity(i);
-            }
-        });
 
         /** Storing an ArrayList in SharedPreference using Gson.
          *  Reference : https://stackoverflow.com/a/27872280/13803511 */
