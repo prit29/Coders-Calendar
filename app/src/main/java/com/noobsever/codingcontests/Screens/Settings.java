@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.TwoStatePreference;
 import android.widget.CheckBox;
 
 import com.noobsever.codingcontests.R;
@@ -16,9 +15,9 @@ import java.util.HashSet;
 
 public class Settings extends AppCompatActivity {
 
+
     private CheckBox cforces,cchef,hrank,hearth,spoj,atcoder,leetcode,google;
     ArrayList<String> checkedItem;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +65,6 @@ public class Settings extends AppCompatActivity {
             checkedItem.add(Constants.CODEFORCES);
             Methods.showToast(this,"Atleast 1 platform has to be selected");
         }
-
 
         Methods.saveTabItems(this,checkedItem);
 

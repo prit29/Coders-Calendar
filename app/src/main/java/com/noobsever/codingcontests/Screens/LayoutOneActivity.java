@@ -1,17 +1,13 @@
 package com.noobsever.codingcontests.Screens;
 
-import android.content.Intent;
+
+import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import android.view.View;
 import android.widget.FrameLayout;
 
-import androidx.cardview.widget.CardView;
-
 import com.google.android.material.tabs.TabLayout;
+import com.noobsever.codingcontests.Adapters.ViewPagerAdapter;
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Constants;
 import com.noobsever.codingcontests.Utils.Methods;
@@ -23,7 +19,7 @@ public class LayoutOneActivity extends BaseActivity{
     boolean doubleBackPressExitOnce = false;
     TabLayout mTabLayout;
     ArrayList<String> mTabItemList;
-    CardView card;
+    ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +29,8 @@ public class LayoutOneActivity extends BaseActivity{
         getLayoutInflater().inflate(R.layout.activity_layout_one, content);
 
         mTabLayout = findViewById(R.id.tab_layout);
+        mViewPager = findViewById(R.id.viewPager);
 
-
-        //sample temporary code for testing
-        card= findViewById(R.id.sample_card);
-        card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(LayoutOneActivity.this, LayoutTwoActivity.class);
-                startActivity(i);
-            }
-        });
 
         /** Storing an ArrayList in SharedPreference using Gson.
          *  Reference : https://stackoverflow.com/a/27872280/13803511 */
@@ -70,8 +57,13 @@ public class LayoutOneActivity extends BaseActivity{
 
         addTabs(); // Populate the tabs.
 
-    }
+        /** Setting up View Pager and attaching fragments */
+        mTabLayout.setupWithViewPager(mViewPager);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),0);
+        viewPagerAdapter.initFragments(mTabItemList);
+        mViewPager.setAdapter(viewPagerAdapter);
 
+    }
 
     public void addTabs() {
         // Using a list of strings to dynamically add tabs.
@@ -79,6 +71,7 @@ public class LayoutOneActivity extends BaseActivity{
             mTabLayout.addTab(mTabLayout.newTab().setText(s));
         }
     }
+
     @Override
     public void onBackPressed() {
         if(doubleBackPressExitOnce)
@@ -95,4 +88,5 @@ public class LayoutOneActivity extends BaseActivity{
             }
         },2000);
     }
+
 }
