@@ -105,7 +105,6 @@ public class Methods {
         return savedTabItems;
     }
 
-
     /** Method below is intended to update the List of tab items in the SharedPreferences */
     public static void saveTabItems(Context context, List<String> list) {
         Gson gson = new Gson();

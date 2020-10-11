@@ -82,6 +82,8 @@ public class LayoutOneActivity extends BaseActivity{
             mTabItemList.add(Constants.HACKEREARTH);
             mTabItemList.add(Constants.SPOJ);
             mTabItemList.add(Constants.ATCODER);
+            mTabItemList.add(Constants.LEETCODE);
+            mTabItemList.add(Constants.GOOGLE);
 
             // Bug fixed below : When App launches for first time Setting checkboxes remaining unmarked.
             Methods.saveTabItems(this,mTabItemList);
