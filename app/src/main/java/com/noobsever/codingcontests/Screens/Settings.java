@@ -67,7 +67,7 @@ public class Settings extends AppCompatActivity {
         }
 
         Methods.saveTabItems(this,checkedItem);
-git add
+
         if(Methods.getIntPreferences(Settings.this, Constants.LAYOUT_SWITCH,Constants.CURRENT_ACTIVITY)==1){
             startActivity(new Intent(Settings.this,LayoutOneActivity.class));
             finishAffinity();
