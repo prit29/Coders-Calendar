@@ -14,8 +14,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Settings extends AppCompatActivity {
-
-
+    
     private CheckBox cforces,cchef,hrank,hearth,spoj,atcoder,leetcode,google;
     ArrayList<String> checkedItem;
 
