@@ -12,5 +12,6 @@ public class Constants {
     public static final String ATCODER = "AtCoder";
     public static final String LEETCODE = "LeetCode";
     public static final String GOOGLE = "Google Coding Competitions";
-
+    public static final String LAYOUT_SWITCH_KEY = "LAYOUT_SWITCH_KEY";
+    public static final String CURRENT_ACTIVITY = "CURRENT_ACTIVITY";
 }
