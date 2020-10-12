@@ -67,9 +67,14 @@ public class Settings extends AppCompatActivity {
         }
 
         Methods.saveTabItems(this,checkedItem);
-
-        startActivity(new Intent(Settings.this,LayoutOneActivity.class));
-        finishAffinity();
+git add
+        if(Methods.getIntPreferences(Settings.this, Constants.LAYOUT_SWITCH,Constants.CURRENT_ACTIVITY)==1){
+            startActivity(new Intent(Settings.this,LayoutOneActivity.class));
+            finishAffinity();
+        }else{
+            startActivity(new Intent(Settings.this,LayoutTwoActivity.class));
+            finishAffinity();
+        }
     }
 
     public void restoreCheckBoxState() {
