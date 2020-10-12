@@ -22,17 +22,17 @@ public class LayoutTwoActivity extends BaseActivity {
         getLayoutInflater().inflate(R.layout.activity_layout_two, content);
         saveActivity();
     }
-
+    
+    //  Function to remember the current activity.
     public void saveActivity() {
         Methods.setPreferences(this, SHARED_PREFERENCE_KEY, lastActivity, 2);
     }
 
-    public void switchLayout(MenuItem item) {                                           //  Function to switch between layouts.
+    //  Function to switch between layouts.
+    public void switchLayout(MenuItem item) {
         finish();
-        if(isTaskRoot()) {
-            Intent intent = new Intent(this, LayoutOneActivity.class);
-            startActivity(intent);
-        }
+        Intent intent = new Intent(this, LayoutOneActivity.class);
+        startActivity(intent);
     }
 
     @Override
