@@ -3,9 +3,7 @@ package com.noobsever.codingcontests.Utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
