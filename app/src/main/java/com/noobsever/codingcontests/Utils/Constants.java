@@ -13,4 +13,9 @@ public class Constants {
     public static final String LEETCODE = "LeetCode";
     public static final String GOOGLE = "Google Coding Competitions";
 
+    public static final String LAYOUT_SWITCH = "LAYOUT_SWITCH";
+    public static final String CURRENT_ACTIVITY = "CURRENT_ACTIVITY";
+
+
+
 }

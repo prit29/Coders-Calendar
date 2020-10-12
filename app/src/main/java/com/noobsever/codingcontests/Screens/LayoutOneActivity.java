@@ -2,8 +2,11 @@ package com.noobsever.codingcontests.Screens;
 
 
 import androidx.viewpager.widget.ViewPager;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.google.android.material.tabs.TabLayout;
@@ -24,6 +27,8 @@ public class LayoutOneActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        saveActivity();
 
         FrameLayout content = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_layout_one, content);
@@ -89,4 +94,24 @@ public class LayoutOneActivity extends BaseActivity{
         },2000);
     }
 
+    public void saveActivity() {
+        Methods.setPreferences(this, Constants.LAYOUT_SWITCH, Constants.CURRENT_ACTIVITY, 1);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.menu_layout:
+                startActivity(new Intent(LayoutOneActivity.this,LayoutTwoActivity.class));
+                finishAffinity();
+                break;
+            case R.id.menu_search:
+                // add action
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
 }

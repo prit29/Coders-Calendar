@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.noobsever.codingcontests.R;
+import com.noobsever.codingcontests.Utils.Constants;
+import com.noobsever.codingcontests.Utils.Methods;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -18,8 +20,13 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                startActivity(new Intent(SplashScreenActivity.this,LayoutOneActivity.class));
-                finish();
+                if(Methods.getIntPreferences(SplashScreenActivity.this, Constants.LAYOUT_SWITCH,Constants.CURRENT_ACTIVITY)==1){
+                    startActivity(new Intent(SplashScreenActivity.this,LayoutOneActivity.class));
+                    finish();
+                }else{
+                    startActivity(new Intent(SplashScreenActivity.this,LayoutTwoActivity.class));
+                    finish();
+                }
             }
         }, 2000);
     }
