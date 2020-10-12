@@ -87,6 +87,7 @@ public class LayoutOneActivity extends BaseActivity{
 
     //  Function to switch between layouts.
     public void switchLayout(MenuItem item) {
+        finish();
         Intent intent = new Intent(this, LayoutTwoActivity.class);
         startActivity(intent);
     }
