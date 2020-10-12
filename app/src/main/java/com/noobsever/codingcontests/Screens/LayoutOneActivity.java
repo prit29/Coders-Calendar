@@ -92,12 +92,6 @@ public class LayoutOneActivity extends BaseActivity{
     }
 
     @Override
-    protected void onResume() {
-        saveActivity();
-        super.onResume();
-    }
-
-    @Override
     public void onBackPressed() {
         if(doubleBackPressExitOnce)
         {
