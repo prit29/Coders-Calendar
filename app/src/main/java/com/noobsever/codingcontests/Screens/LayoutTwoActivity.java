@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-
 import com.noobsever.codingcontests.R;
+import com.noobsever.codingcontests.Utils.Constants;
 import com.noobsever.codingcontests.Utils.Methods;
 
 public class LayoutTwoActivity extends BaseActivity {
@@ -18,6 +18,8 @@ public class LayoutTwoActivity extends BaseActivity {
 
         FrameLayout content = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_layout_two, content);
+
+        saveActivity();
     }
     @Override
     public void onBackPressed() {
@@ -36,12 +38,18 @@ public class LayoutTwoActivity extends BaseActivity {
         },2000);
     }
 
+    //  Function to remember current activity.
+    public void saveActivity() {
+        Methods.setPreferences(this, Constants.LAYOUT_SWITCH_KEY, Constants.CURRENT_ACTIVITY, 2);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
             case R.id.menu_layout:
-                // add action
-                startActivity(new Intent(this,LayoutOneActivity.class));
+                startActivity(new Intent(LayoutTwoActivity.this,LayoutOneActivity.class));
+                finishAffinity();
                 break;
             case R.id.menu_search:
                 // add action

@@ -2,15 +2,12 @@ package com.noobsever.codingcontests.Screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.CheckBox;
-
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Constants;
 import com.noobsever.codingcontests.Utils.Methods;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -74,7 +71,10 @@ public class Settings extends AppCompatActivity {
 
         Methods.saveTabItems(this,checkedItem);
 
-        startActivity(new Intent(Settings.this,LayoutOneActivity.class));
+        if(Methods.getIntPreferences(Settings.this, Constants.LAYOUT_SWITCH_KEY,Constants.CURRENT_ACTIVITY)==1)
+            startActivity(new Intent(Settings.this,LayoutOneActivity.class));
+        else
+            startActivity(new Intent(Settings.this,LayoutTwoActivity.class));
         finishAffinity();
     }
 
