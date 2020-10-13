@@ -6,8 +6,6 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.CheckBox;
-import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Constants;
@@ -26,6 +24,7 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
         toolbar = findViewById(R.id.settings_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
