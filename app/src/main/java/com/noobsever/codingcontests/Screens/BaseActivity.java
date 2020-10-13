@@ -55,8 +55,23 @@ public class BaseActivity extends AppCompatActivity {
                                 drawerLayout.closeDrawers();
                                 break;
 
+                            case R.id.nav_notifications:
+                                Intent notifications = new Intent(getApplicationContext(), NotificationActivity.class);
+                                startActivity(notifications);
+                                drawerLayout.closeDrawers();
+                                break;
 
+                            case R.id.nav_help:
+                                Intent help = new Intent(getApplicationContext(), HelpActivity.class);
+                                startActivity(help);
+                                drawerLayout.closeDrawers();
+                                break;
 
+                            case R.id.nav_suggest:
+                                Intent suggest = new Intent(getApplicationContext(), SuggestUsActivity.class);
+                                startActivity(suggest);
+                                drawerLayout.closeDrawers();
+                                break;
                         }
                         return false;
                     }

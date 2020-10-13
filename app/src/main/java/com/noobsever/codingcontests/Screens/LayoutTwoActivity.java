@@ -1,9 +1,12 @@
 package com.noobsever.codingcontests.Screens;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.noobsever.codingcontests.R;
@@ -34,5 +37,21 @@ public class LayoutTwoActivity extends BaseActivity {
                 doubleBackPressExitOnce = false;
             }
         },2000);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_layout:
+                // add action
+                startActivity(new Intent(this,LayoutOneActivity.class));
+                break;
+            case R.id.menu_search:
+                // add action
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 }
