@@ -1,17 +1,16 @@
 package com.noobsever.codingcontests.Screens;
 
-
 import androidx.viewpager.widget.ViewPager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
-
 import com.google.android.material.tabs.TabLayout;
 import com.noobsever.codingcontests.Adapters.ViewPagerAdapter;
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Constants;
 import com.noobsever.codingcontests.Utils.Methods;
-
 import java.util.ArrayList;
 
 public class LayoutOneActivity extends BaseActivity{
@@ -63,6 +62,7 @@ public class LayoutOneActivity extends BaseActivity{
         viewPagerAdapter.initFragments(mTabItemList);
         mViewPager.setAdapter(viewPagerAdapter);
 
+        saveActivity();
     }
 
     public void addTabs() {
@@ -89,4 +89,25 @@ public class LayoutOneActivity extends BaseActivity{
         },2000);
     }
 
+    //  Function to remember current activity.
+    public void saveActivity() {
+        Methods.setPreferences(this, Constants.LAYOUT_SWITCH_KEY, Constants.CURRENT_ACTIVITY, 1);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.menu_layout:
+                startActivity(new Intent(LayoutOneActivity.this,LayoutTwoActivity.class));
+                finishAffinity();
+                break;
+            case R.id.menu_search:
+                // add action
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
 }
