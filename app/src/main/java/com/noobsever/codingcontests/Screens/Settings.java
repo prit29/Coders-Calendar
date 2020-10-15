@@ -1,21 +1,20 @@
 package com.noobsever.codingcontests.Screens;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.TwoStatePreference;
 import android.widget.CheckBox;
-
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Constants;
 import com.noobsever.codingcontests.Utils.Methods;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Settings extends AppCompatActivity {
 
+
+    Toolbar toolbar;
     private CheckBox cforces,cchef,hrank,hearth,spoj,atcoder,leetcode,google;
     ArrayList<String> checkedItem;
 
@@ -23,6 +22,12 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Settings");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_button);
 
         checkedItem = new ArrayList<>();
 
@@ -32,7 +37,6 @@ public class Settings extends AppCompatActivity {
         }catch (NullPointerException e) {
             e.printStackTrace();
         }
-
 
         cforces = findViewById(R.id.cb_codeforces);
         cchef = findViewById(R.id.cb_codechef);
@@ -69,7 +73,10 @@ public class Settings extends AppCompatActivity {
 
         Methods.saveTabItems(this,checkedItem);
 
-        startActivity(new Intent(Settings.this,LayoutOneActivity.class));
+        if(Methods.getIntPreferences(Settings.this, Constants.LAYOUT_SWITCH_KEY,Constants.CURRENT_ACTIVITY)==1)
+            startActivity(new Intent(Settings.this,LayoutOneActivity.class));
+        else
+            startActivity(new Intent(Settings.this,LayoutTwoActivity.class));
         finishAffinity();
     }
 

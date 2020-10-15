@@ -2,6 +2,7 @@ package com.noobsever.codingcontests.Screens;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -50,13 +51,31 @@ public class BaseActivity extends AppCompatActivity {
                         switch (item.getItemId()) {
 
                             case R.id.nav_settings:
-                                Intent settings = new Intent(getApplicationContext(), Settings.class);
-                                startActivity(settings);
+                                drawerLayout.closeDrawers();
+                                new Handler().postDelayed(new Runnable() {
+                                    public void run() {
+                                        startActivity(new Intent(getApplicationContext(), Settings.class));
+                                    }
+                                }, 500);
+                                break;
+
+                            case R.id.nav_notifications:
+                                Intent notifications = new Intent(getApplicationContext(), NotificationActivity.class);
+                                startActivity(notifications);
                                 drawerLayout.closeDrawers();
                                 break;
 
+                            case R.id.nav_help:
+                                Intent help = new Intent(getApplicationContext(), HelpActivity.class);
+                                startActivity(help);
+                                drawerLayout.closeDrawers();
+                                break;
 
-
+                            case R.id.nav_suggest:
+                                Intent suggest = new Intent(getApplicationContext(), SuggestUsActivity.class);
+                                startActivity(suggest);
+                                drawerLayout.closeDrawers();
+                                break;
                         }
                         return false;
                     }
@@ -83,7 +102,6 @@ public class BaseActivity extends AppCompatActivity {
         super.startActivity(intent);
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

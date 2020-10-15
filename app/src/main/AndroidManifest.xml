@@ -9,8 +9,11 @@
         android:roundIcon="@drawable/applogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Screens.BaseActivity"/>
-        <activity android:name=".Screens.Settings" />
+        <activity android:name=".Screens.SuggestUsActivity" android:parentActivityName=".Screens.BaseActivity"/>
+        <activity android:name=".Screens.HelpActivity" android:parentActivityName=".Screens.BaseActivity"/>
+        <activity android:name=".Screens.NotificationActivity" android:parentActivityName=".Screens.BaseActivity"/>
+        <activity android:name=".Screens.BaseActivity" />
+        <activity android:name=".Screens.Settings" android:parentActivityName=".Screens.BaseActivity"/>
         <activity android:name=".Screens.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
