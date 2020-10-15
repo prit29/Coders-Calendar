@@ -15,11 +15,11 @@ public class HelpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
 
-        toolbar = findViewById(R.id.help_toolbar);
+        toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_button);
-
+        getSupportActionBar().setTitle("Help");
         Toast.makeText(this, "Help", Toast.LENGTH_SHORT).show();
     }
 }

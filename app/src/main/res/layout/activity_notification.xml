@@ -8,15 +8,5 @@
     style="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
     >
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/notification_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorSurface"
-        android:elevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="Notifications"
-        app:titleTextColor="?attr/colorOnSurface" />
+    <include layout="@layout/app_bar_layout"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

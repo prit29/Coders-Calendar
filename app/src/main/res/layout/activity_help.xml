@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Screens.HelpActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/help_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorSurface"
-        android:elevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="Help"
-        app:titleTextColor="?attr/colorOnSurface" />
+    <include layout="@layout/app_bar_layout"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
