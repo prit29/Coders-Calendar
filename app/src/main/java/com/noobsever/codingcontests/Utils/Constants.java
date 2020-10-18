@@ -4,6 +4,8 @@ public class Constants {
 
     public static final String TAB_ITEMS_PREFERENCES_KEY = "TAB_ITEMS_PREFERENCES_KEY";
     public static final String TAB_ITEMS_ARRAYLIST_KEY = "TAB_ITEMS_ARRAYLIST_KEY";
+    public static final String TOGGLE_ITEMS_PREFERENCES_KEY = "TOGGLE_ITEMS_PREFERENCES_KEY";
+    public static final String TOGGLE_ITEMS_ARRAYLIST_KEY = "TOGGLE_ITEMS_ARRAYLIST_KEY";
     public static final String CODEFORCES = "Codeforces";
     public static final String CODECHEF = "CodeChef";
     public static final String HACKERRANK = "HackerRank";
@@ -14,4 +16,7 @@ public class Constants {
     public static final String GOOGLE = "Google Coding Competitions";
     public static final String LAYOUT_SWITCH_KEY = "LAYOUT_SWITCH_KEY";
     public static final String CURRENT_ACTIVITY = "CURRENT_ACTIVITY";
+    public static final String SWITCH_TWELVE = "switchTwelve";
+    public static final String SWITCH_TWENTY_FOUR = "switchTwentyFour";
+    public static final String SWITCH_NOTIFICATION = "switchNotification";
 }

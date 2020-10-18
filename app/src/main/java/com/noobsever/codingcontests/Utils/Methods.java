@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 import com.google.gson.Gson;
+
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -110,6 +112,30 @@ public class Methods {
         SharedPreferences.Editor editor = preferences.edit();
         String text = gson.toJson(list);
         editor.putString(Constants.TAB_ITEMS_ARRAYLIST_KEY,text);
+        editor.apply();
+    }
+
+    /** Method to fetch toggle items like time-format, notification from SharedPreferences*/
+    public static List<String> fetchToggleItems(Context context) {
+        ArrayList<String> savedToggleItems = new ArrayList<>();
+
+        SharedPreferences preferences = context.getSharedPreferences(Constants.TOGGLE_ITEMS_ARRAYLIST_KEY,Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String jsonText = preferences.getString(Constants.TOGGLE_ITEMS_ARRAYLIST_KEY, null);
+        String[] text = gson.fromJson(jsonText, String[].class);
+        savedToggleItems.addAll(Arrays.asList(text));
+
+        return savedToggleItems;
+    }
+
+    /**Method to save toggle items like time-format, notification in SharedPreferences*/
+    public static void saveToggleItems(Context context, List<String> list)
+    {
+        Gson gson = new Gson();
+        SharedPreferences preferences = context.getSharedPreferences(Constants.TOGGLE_ITEMS_ARRAYLIST_KEY,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        String text = gson.toJson(list);
+        editor.putString(Constants.TOGGLE_ITEMS_ARRAYLIST_KEY,text);
         editor.apply();
     }
 }
