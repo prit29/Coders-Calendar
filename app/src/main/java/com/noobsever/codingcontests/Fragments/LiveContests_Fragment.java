@@ -11,10 +11,10 @@ import com.noobsever.codingcontests.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fragment3#newInstance} factory method to
+ * Use the {@link LiveContests_Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment3 extends Fragment {
+public class LiveContests_Fragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +25,7 @@ public class fragment3 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public fragment3() {
+    public LiveContests_Fragment() {
         // Required empty public constructor
     }
 
@@ -38,8 +38,8 @@ public class fragment3 extends Fragment {
      * @return A new instance of fragment fragment3.
      */
     // TODO: Rename and change types and number of parameters
-    public static fragment3 newInstance(String param1, String param2) {
-        fragment3 fragment = new fragment3();
+    public static LiveContests_Fragment newInstance(String param1, String param2) {
+        LiveContests_Fragment fragment = new LiveContests_Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,6 +60,6 @@ public class fragment3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment3, container, false);
+        return inflater.inflate(R.layout.fragment_live_contests, container, false);
     }
 }

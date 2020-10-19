@@ -21,12 +21,10 @@
     <string name="topcoder">TopCoder</string>
     <string name="leetcode">LeetCode</string>
     <string name="google">Google Coding Competitions</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search">Search</string>
     <string name="change_layout">Change Layout</string>
     <string name="communicate">Communicate</string>
-
     <string name="set_notification">Set Notification</string>
     <string name="set_reminder">Set Reminder</string>
     <string name="start"><u>START</u></string>
@@ -41,4 +39,7 @@
     <string name="time_format">Time Format</string>
     <string name="hr_12_format">12-hour</string>
     <string name="hr_24_format">24-hour</string>
+    <string name="longContests">Long</string>
+    <string name="shortContests">Short</string>
+    <string name="liveContests">Live</string>
 </resources>

@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.fragment2">
+    tools:context=".Fragments.LiveContests_Fragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="50dp"
-        android:text="You are viewing fragment-2 !" />
+        android:text="Live contests will appear here!" />
 
 </FrameLayout>
