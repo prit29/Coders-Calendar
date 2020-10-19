@@ -6,4 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".Screens.LayoutTwoActivity">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="683dp">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentSpace"
+            android:name="com.noobsever.codingcontests.Fragments.fragment1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+        </androidx.fragment.app.FragmentContainerView>
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggle_button_group"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:checkedButton="@+id/button1"
+            app:selectionRequired="true"
+            app:singleSelection="true"
+            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button1"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fragment 1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button2"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fragment 2" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button3"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fragment 3" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
