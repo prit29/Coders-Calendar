@@ -20,7 +20,6 @@ public class NotificationActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Notifications");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_button);
 
         Toast.makeText(this, "Notifications Activity", Toast.LENGTH_SHORT).show();
     }
