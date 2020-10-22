@@ -140,7 +140,6 @@
                 android:id="@+id/switch_12_time_format"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:textSize="18sp"
                 android:text="@string/hr_12_format"/>
 
@@ -148,7 +147,6 @@
                 android:id="@+id/switch_24_time_format"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="false"
                 android:textSize="18sp"
                 android:text="@string/hr_24_format"/>
 
@@ -181,7 +179,6 @@
                 android:id="@+id/switch_notification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:textSize="18sp"
                 android:text="@string/enable_notif"/>
 

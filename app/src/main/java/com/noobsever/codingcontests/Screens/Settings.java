@@ -1,13 +1,19 @@
 package com.noobsever.codingcontests.Screens;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.switchmaterial.SwitchMaterial;
+
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Constants;
 import com.noobsever.codingcontests.Utils.Methods;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -15,6 +21,7 @@ public class Settings extends AppCompatActivity {
 
     Toolbar toolbar;
     private CheckBox cforces,cchef,hrank,hearth,spoj,atcoder,leetcode,google;
+    private SwitchMaterial switchTwelve, switchTwentyFour, switchNotification;
     ArrayList<String> checkedItem;
 
     @Override
@@ -45,8 +52,62 @@ public class Settings extends AppCompatActivity {
         atcoder = findViewById(R.id.cb_atcoder);
         leetcode = findViewById(R.id.cb_leetcode);
         google = findViewById(R.id.cb_google);
+        switchTwelve = findViewById(R.id.switch_12_time_format);
+        switchTwentyFour = findViewById(R.id.switch_24_time_format);
+        switchNotification = findViewById(R.id.switch_notification);
 
         restoreCheckBoxState();
+
+        restoreToggledItemsState();
+
+        switchTwelve.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    //If 12 hour switch checked, 1 is stored in sharedPreferences indicating ON
+                    Methods.setPreferences(Settings.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE,1);
+                    switchTwentyFour.setChecked(false);
+                }
+                else
+                {
+                    //If 12 hour switch unchecked, 0 is stored in sharedPreferences indicating OFF and 24 hr switch checked
+                    Methods.setPreferences(Settings.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE,0);
+                    switchTwentyFour.setChecked(true);
+                }
+            }
+        });
+
+        switchTwentyFour.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    //If 24 hour switch checked, 0 is stored in sharedPreferences indicating 12 hour switch OFF
+                    Methods.setPreferences(Settings.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE,0);
+                    switchTwelve.setChecked(false);
+                }
+                else
+                {
+                    //If 24 hour switch checked, 1 is stored in sharedPreferences indicating 12 hour switch ON
+                    Methods.setPreferences(Settings.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE,1);
+                    switchTwelve.setChecked(true);
+
+                }
+        }});
+
+        switchNotification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //If notification switch ON, 1 is stored in sharedPreferences
+                if(isChecked)
+                    Methods.setPreferences(Settings.this, Constants.SWITCH_NOTIFICATION,Constants.SWITCH_NOTIFICATION,1);
+                    //If notification switch ON, 0 is stored in sharedPreferences
+                else
+                    Methods.setPreferences(Settings.this,Constants.SWITCH_NOTIFICATION,Constants.SWITCH_NOTIFICATION,0);
+            }
+        });
+
     }
 
     @Override
@@ -80,34 +141,23 @@ public class Settings extends AppCompatActivity {
     }
 
     public void restoreCheckBoxState() {
-        HashSet<String> set = new HashSet<>();
-        for(String s : checkedItem) set.add(s);
-
-        if(set.contains(Constants.CODEFORCES)) cforces.setChecked(true);
-        else cforces.setChecked(false);
-
-        if(set.contains(Constants.CODECHEF)) cchef.setChecked(true);
-        else cchef.setChecked(false);
-
-        if(set.contains(Constants.HACKERRANK)) hrank.setChecked(true);
-        else hrank.setChecked(false);
-
-        if(set.contains(Constants.HACKEREARTH)) hearth.setChecked(true);
-        else hearth.setChecked(false);
-
-        if(set.contains(Constants.SPOJ)) spoj.setChecked(true);
-        else spoj.setChecked(false);
-
-        if(set.contains(Constants.ATCODER)) atcoder.setChecked(true);
-        else atcoder.setChecked(false);
-
-        if(set.contains(Constants.LEETCODE)) leetcode.setChecked(true);
-        else leetcode.setChecked(false);
-
-        if(set.contains(Constants.GOOGLE)) google.setChecked(true);
-        else google.setChecked(false);
+        HashSet<String> set = new HashSet<>(checkedItem);
+        cforces.setChecked(set.contains(Constants.CODEFORCES));
+        cchef.setChecked(set.contains(Constants.CODECHEF));
+        hrank.setChecked(set.contains(Constants.HACKERRANK));
+        hearth.setChecked(set.contains(Constants.HACKEREARTH));
+        spoj.setChecked(set.contains(Constants.SPOJ));
+        atcoder.setChecked(set.contains(Constants.ATCODER));
+        leetcode.setChecked(set.contains(Constants.LEETCODE));
+        google.setChecked(set.contains(Constants.GOOGLE));
     }
 
-
+    /***/
+    public void restoreToggledItemsState()
+    {
+        switchTwelve.setChecked(Methods.getIntPreferences(Settings.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE)!=0);
+        switchTwentyFour.setChecked(Methods.getIntPreferences(Settings.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE)==0);
+        switchNotification.setChecked(Methods.getIntPreferences(Settings.this, Constants.SWITCH_NOTIFICATION, Constants.SWITCH_NOTIFICATION) != 0);
+    }
 
 }
