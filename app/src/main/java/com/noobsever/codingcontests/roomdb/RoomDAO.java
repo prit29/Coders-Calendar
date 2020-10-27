@@ -1,4 +1,5 @@
 package com.noobsever.codingcontests.roomdb;
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -15,8 +16,8 @@ public interface RoomDAO {
     void addContest(ContestObject contestObject);
 
     @Query("SELECT * FROM "+ Constants.CONTEST_OBJECT_TABLE_NAME)
-    List<ContestObject> getAllContests();
+    LiveData<List<ContestObject>> getAllContests();
 
-    @Query("SELECT * FROM "+ Constants.CONTEST_OBJECT_TABLE_NAME +" WHERE title LIKE :Title")
+    @Query("SELECT * FROM "+ Constants.CONTEST_OBJECT_TABLE_NAME +" WHERE title = :Title")
     ContestObject findContestByTitle(String Title);
 }
