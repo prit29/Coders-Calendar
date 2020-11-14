@@ -39,8 +39,8 @@ public class BaseActivity extends AppCompatActivity {
                 R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
 
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.design_default_color_on_primary));
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-
 
         navigationView.setNavigationItemSelectedListener
                 (new NavigationView.OnNavigationItemSelectedListener() {
@@ -86,7 +86,7 @@ public class BaseActivity extends AppCompatActivity {
                                 }, 500);
                                 break;
                         }
-                        return false;
+                        return true;
                     }
                 });
 
