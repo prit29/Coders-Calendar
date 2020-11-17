@@ -26,11 +26,19 @@ public class RoomViewModel extends AndroidViewModel {
         repository.addContest(contestObject);
     }
 
+    public void deleteAllTuples() {
+        repository.deleteAllTuples();
+    }
+
     public LiveData<List<ContestObject>> getAllContests() {
         return allContests;
     }
 
-    public ContestObject findContestByTitle (String title) {
-        return (repository.findContestByTitle(title));
+    public ContestObject findContestByPlatform (String platform) {
+        return (repository.findContestByPlatform(platform));
+    }
+
+    public List<ContestObject> getContestByTime(String start_date, String end_date) {
+        return (repository.getContestByTime(start_date,end_date));
     }
 }

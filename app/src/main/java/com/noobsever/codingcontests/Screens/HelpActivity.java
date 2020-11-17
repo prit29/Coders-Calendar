@@ -19,6 +19,7 @@ public class HelpActivity extends AppCompatActivity {
     RoomViewModel mRoomViewModel;
     Toolbar toolbar;
 
+    /** Following code is just for testing DB. This can be deleted later. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,7 @@ public class HelpActivity extends AppCompatActivity {
         Toast.makeText(this, "Room DB being tested!", Toast.LENGTH_SHORT).show();
 
         testRoomDB();
+
     }
 
     private void testRoomDB() {
@@ -48,52 +50,33 @@ public class HelpActivity extends AppCompatActivity {
             }
         });
 
+
         testSearchQuery();
     }
 
     private void testSearchQuery() {
-        // Invalid query
-        String searchContest = "SomeContestNotInDatabase";
-        ContestObject contestObject = mRoomViewModel.findContestByTitle(searchContest);
-        if(contestObject!=null)
-            Log.i(TAG, contestObject.getTitle()+" found");
-        else
-            Log.i(TAG,searchContest+" not found");
-
         // Valid query
-        String searchContest1 = "challenge1";
-        ContestObject contestObject1 = mRoomViewModel.findContestByTitle(searchContest1);
+        String searchContest1 = "Kotlin Heroes 5: ICPC Round (Practice)";
+        ContestObject contestObject1 = mRoomViewModel.findContestByPlatform(searchContest1);
         if(contestObject1!=null)
             Log.i(TAG, contestObject1.getTitle()+" found");
         else
             Log.i(TAG,searchContest1+" not found");
 
+        List<ContestObject> list = mRoomViewModel.getContestByTime("2020-11-05T13:35:00","2020-11-12T14:35:00");
+        for(int i=0;i<list.size();i++) {
+            Log.i(TAG, "testSearchQuery: Found Contests : ["+list.get(i).getTitle()+" ]");
+        }
     }
 
     public void addDummyContests() {
-        mRoomViewModel.addContest(new ContestObject("challenge1","Tomorrow 7:30",
-                "Tomorrow 11","2.5 Hrs","www.cchefContest.com","Pending"));
+        mRoomViewModel.addContest(new ContestObject("Kotlin Heroes 5: ICPC Round (Practice)","2020-11-05T13:35:00",
+                "2020-11-12T13:35:00","604800","http://codeforces.com/contests/1432","Running","codeforces.com"));
 
-        mRoomViewModel.addContest(new ContestObject("challenge2","Tomorrow 7:30",
-                "Tomorrow 11","2.5 Hrs","www.cchefContest.com","Pending"));
+        mRoomViewModel.addContest(new ContestObject("Kotlin Heroes 5: ICPC Round","2020-11-12T14:35:00","2020-11-12T17:05:00","9000",
+                "http://codeforces.com/contests/1431","Yet To","codeforces.com"));
 
-        mRoomViewModel.addContest(new ContestObject("challenge3","Tomorrow 7:30",
-                "Tomorrow 11","2.5 Hrs","www.cchefContest.com","Pending"));
-
-        mRoomViewModel.addContest(new ContestObject("challenge4","Tomorrow 7:30",
-                "Tomorrow 11","2.5 Hrs","www.cchefContest.com","Pending"));
-
-        mRoomViewModel.addContest(new ContestObject("challenge5","Tomorrow 7:30",
-                "Tomorrow 11","2.5 Hrs","www.cchefContest.com","Pending"));
-
-        mRoomViewModel.addContest(new ContestObject("challenge6","Tomorrow 7:30",
-                "Tomorrow 11","2.5 Hrs","www.cchefContest.com","Pending"));
-
-        mRoomViewModel.addContest(new ContestObject("challenge7","Tomorrow 7:30",
-                "Tomorrow 11","2.5 Hrs","www.cchefContest.com","Pending"));
-
-        mRoomViewModel.addContest(new ContestObject("challenge8","Tomorrow 7:30",
-                "Tomorrow 11","2.5 Hrs","www.cchefContest.com","Pending"));
-
+        mRoomViewModel.addContest(new ContestObject("Codeforces Round #682 (Div. 2)","2020-11-13T14:35:00","2020-11-13T16:35:00",
+                "7200","http://codeforces.com/contests/1438","Yet To","codeforces.com"));
     }
 }

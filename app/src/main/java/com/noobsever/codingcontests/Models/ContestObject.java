@@ -11,21 +11,26 @@ public class ContestObject {
     @PrimaryKey(autoGenerate = true)
     private int _id;
 
-    private String title,start,end,duration,link,status;
+    private String title,start,end,duration,link,status,platform;
 
     public ContestObject() {}
 
-    public ContestObject(String title, String start,String end, String duration,String link,String status) {
+    public ContestObject(String title, String start,String end, String duration,String link,String status, String platform) {
         this.title = title;
         this.start = start;
         this.end = end;
         this.duration = duration;
         this.link = link;
         this.status = status;
+        this.platform = platform;
     }
 
     public int get_id() {
         return _id;
+    }
+
+    public String getPlatform() {
+        return platform;
     }
 
     public String getTitle() {
@@ -78,6 +83,10 @@ public class ContestObject {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform =  platform;
     }
 }
 
