@@ -1,6 +1,6 @@
 # Coder's Calendar
 
-[![Join the chat at https://gitter.im/Coder-s-Calendar/SLoP](https://badges.gitter.im/Coder-s-Calendar/SLoP.svg)](https://gitter.im/Coder-s-Calendar/SLoP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/Coder-s-Calendar/community](https://badges.gitter.im/Coder-s-Calendar/SLoP.svg)](https://gitter.im/Coder-s-Calendar/SLoP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 An android app to manage a schedule of programming contest timing of various competitive programming platforms
 

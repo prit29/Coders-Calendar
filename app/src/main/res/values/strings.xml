@@ -41,4 +41,5 @@
     <string name="time_format">Time Format</string>
     <string name="hr_12_format">12-hour</string>
     <string name="hr_24_format">24-hour</string>
+    <string name="faq">Frequently Asked Questions</string>
 </resources>

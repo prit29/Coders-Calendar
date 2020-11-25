@@ -39,8 +39,8 @@ public class BaseActivity extends AppCompatActivity {
                 R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
 
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.design_default_color_on_primary));
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-
 
         navigationView.setNavigationItemSelectedListener
                 (new NavigationView.OnNavigationItemSelectedListener() {
@@ -60,24 +60,33 @@ public class BaseActivity extends AppCompatActivity {
                                 break;
 
                             case R.id.nav_notifications:
-                                Intent notifications = new Intent(getApplicationContext(), NotificationActivity.class);
-                                startActivity(notifications);
                                 drawerLayout.closeDrawers();
+                                new Handler().postDelayed(new Runnable() {
+                                    public void run() {
+                                        startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
+                                    }
+                                }, 500);
                                 break;
 
                             case R.id.nav_help:
-                                Intent help = new Intent(getApplicationContext(), HelpActivity.class);
-                                startActivity(help);
                                 drawerLayout.closeDrawers();
+                                new Handler().postDelayed(new Runnable() {
+                                    public void run() {
+                                        startActivity(new Intent(getApplicationContext(), HelpActivity.class));
+                                    }
+                                }, 500);
                                 break;
 
                             case R.id.nav_suggest:
-                                Intent suggest = new Intent(getApplicationContext(), SuggestUsActivity.class);
-                                startActivity(suggest);
                                 drawerLayout.closeDrawers();
+                                new Handler().postDelayed(new Runnable() {
+                                    public void run() {
+                                        startActivity(new Intent(getApplicationContext(), SuggestUsActivity.class));
+                                    }
+                                }, 500);
                                 break;
                         }
-                        return false;
+                        return true;
                     }
                 });
 
