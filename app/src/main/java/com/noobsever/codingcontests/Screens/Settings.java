@@ -2,9 +2,11 @@ package com.noobsever.codingcontests.Screens;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Settings extends AppCompatActivity {
+
 
     Toolbar toolbar;
     private CheckBox cforces,cchef,hrank,hearth,spoj,atcoder,leetcode,google;
@@ -33,7 +36,6 @@ public class Settings extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Settings");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_button);
 
         checkedItem = new ArrayList<>();
 
@@ -160,4 +162,15 @@ public class Settings extends AppCompatActivity {
         switchNotification.setChecked(Methods.getIntPreferences(Settings.this, Constants.SWITCH_NOTIFICATION, Constants.SWITCH_NOTIFICATION) != 0);
     }
 
+    // Fixing : Back button on Appbar of settings activity won't function the expected way.
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default: return super.onOptionsItemSelected(item);
+        }
+    }
 }

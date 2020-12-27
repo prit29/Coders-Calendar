@@ -3,6 +3,7 @@ package com.noobsever.codingcontests.Screens;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -20,8 +21,9 @@ public class NotificationActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Notifications");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_button);
 
         Toast.makeText(this, "Notifications Activity", Toast.LENGTH_SHORT).show();
+
+        startActivity(new Intent(this,RoomActivity.class));
     }
 }

@@ -11,17 +11,18 @@ import android.widget.Toast;
 import com.noobsever.codingcontests.Adapters.HelpAdapter;
 import com.noobsever.codingcontests.Models.HelpObject;
 import com.noobsever.codingcontests.R;
-import com.noobsever.codingcontests.Utils.Methods;
 
 import java.util.ArrayList;
 
 public class HelpActivity extends AppCompatActivity {
 
+    private static final String TAG = "HelpActivity";
     Toolbar toolbar;
     TextView faqTextView;
     RecyclerView helpRecyclerView;
     ArrayList<HelpObject> helpObjectArrayList;
     HelpAdapter helpAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +34,6 @@ public class HelpActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_button);
         getSupportActionBar().setTitle("Help");
         Toast.makeText(this, "Help", Toast.LENGTH_SHORT).show();
 
@@ -49,6 +49,5 @@ public class HelpActivity extends AppCompatActivity {
         helpRecyclerView.setHasFixedSize(true);
         helpRecyclerView.setAdapter(helpAdapter);
     }
-
 
 }
