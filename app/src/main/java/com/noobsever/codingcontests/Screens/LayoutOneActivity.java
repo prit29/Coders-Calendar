@@ -1,18 +1,38 @@
 package com.noobsever.codingcontests.Screens;
 
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 
 import android.widget.FrameLayout;
+
+import com.google.android.gms.common.api.Api;
 import com.google.android.material.tabs.TabLayout;
 import com.noobsever.codingcontests.Adapters.ViewPagerAdapter;
+import com.noobsever.codingcontests.Models.ApiResponse;
+import com.noobsever.codingcontests.Models.ContestObject;
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Constants;
 import com.noobsever.codingcontests.Utils.Methods;
+import com.noobsever.codingcontests.ViewModel.ApiViewModel;
+import com.noobsever.codingcontests.services.APIClient;
+import com.noobsever.codingcontests.services.ApiInterface;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LayoutOneActivity extends BaseActivity{
 
@@ -20,6 +40,8 @@ public class LayoutOneActivity extends BaseActivity{
     TabLayout mTabLayout;
     ArrayList<String> mTabItemList;
     ViewPager mViewPager;
+
+    ApiViewModel apiViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +53,21 @@ public class LayoutOneActivity extends BaseActivity{
         mTabLayout = findViewById(R.id.tab_layout);
         mViewPager = findViewById(R.id.viewPager);
 
+
+        // Testing Api Start -------------------------------------------------------------------------
+
+        apiViewModel = ViewModelProviders.of(this).get(ApiViewModel.class);
+        apiViewModel.init();
+        apiViewModel.getAllContests().observe(this, new Observer<List<ContestObject>>() {
+            @Override
+            public void onChanged(List<ContestObject> contestObjects) {
+                Log.e("In Observer>>>",contestObjects.get(0).getPlatform());
+            }
+        });
+
+        apiViewModel.fetchContestFromApi();
+
+        // Testing Api End -------------------------------------------------------------------------
 
         /** Storing an ArrayList in SharedPreference using Gson.
          *  Reference : https://stackoverflow.com/a/27872280/13803511 */
