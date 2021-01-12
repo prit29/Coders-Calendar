@@ -3,6 +3,8 @@ package com.noobsever.codingcontests.Models;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import com.noobsever.codingcontests.Utils.Constants;
 
 @Entity(tableName = Constants.CONTEST_OBJECT_TABLE_NAME)
@@ -11,7 +13,30 @@ public class ContestObject {
     @PrimaryKey(autoGenerate = true)
     private int _id;
 
-    private String title,start,end,duration,link,status,platform;
+    @SerializedName("platform")
+    @Expose
+    private String platform;
+    @SerializedName("id")
+    @Expose
+    private String contestId;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("start")
+    @Expose
+    private String start;
+    @SerializedName("end")
+    @Expose
+    private String end;
+    @SerializedName("duration")
+    @Expose
+    private String duration;
+    @SerializedName("link")
+    @Expose
+    private String link;
+    @SerializedName("status")
+    @Expose
+    private String status;
 
     public ContestObject() {}
 
@@ -23,6 +48,17 @@ public class ContestObject {
         this.link = link;
         this.status = status;
         this.platform = platform;
+    }
+
+    public ContestObject(String platform, String contestId, String title, String start, String end, String duration, String link, String status) {
+        this.platform = platform;
+        this.contestId = contestId;
+        this.title = title;
+        this.start = start;
+        this.end = end;
+        this.duration = duration;
+        this.link = link;
+        this.status = status;
     }
 
     public int get_id() {
@@ -57,6 +93,10 @@ public class ContestObject {
         return status;
     }
 
+    public String getContestId() {
+        return contestId;
+    }
+
     public void set_id(int _id) {
         this._id = _id;
     }
@@ -87,6 +127,10 @@ public class ContestObject {
 
     public void setPlatform(String platform) {
         this.platform =  platform;
+    }
+
+    public void setContestId(String contestId) {
+        this.contestId = contestId;
     }
 }
 

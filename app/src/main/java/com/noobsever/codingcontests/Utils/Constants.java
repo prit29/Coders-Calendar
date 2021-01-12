@@ -18,4 +18,5 @@ public class Constants {
     public static final String SWITCH_NOTIFICATION = "SWITCH_NOTIFICATION";
     public static final String CONTEST_OBJECT_TABLE_NAME = "CONTEST_OBJECT_TABLE";
     public static final String ROOM_DB_NAME = "CONTEST_DB";
+    public static final String API_URL = "https://coders-calendar.herokuapp.com";
 }
