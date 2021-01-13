@@ -14,6 +14,9 @@ public interface RoomDAO {
     @Insert
     void addContest(ContestObject contestObject);
 
+    @Insert
+    void addAllContest(List<ContestObject> AllContest);
+
     @Query("SELECT * FROM "+ Constants.CONTEST_OBJECT_TABLE_NAME)
     LiveData<List<ContestObject>> getAllContests();
 

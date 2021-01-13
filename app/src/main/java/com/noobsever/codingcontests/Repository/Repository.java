@@ -26,6 +26,10 @@ public class Repository {
         new AddContestAsyncTask(roomDAO).execute(contestObject);
     }
 
+    public void addAllContest(List<ContestObject> AllContest) {
+        new AddAllContestAsyncTask(roomDAO).execute(AllContest);
+    }
+
     public void deleteAllTuples() {
         new DeleteTuplesAsyncTask(roomDAO).execute();
     }
@@ -63,6 +67,19 @@ public class Repository {
         @Override
         protected Void doInBackground(ContestObject... contestObjects) {
             dao.addContest(contestObjects[0]);
+            return null;
+        }
+    }
+
+    private static class AddAllContestAsyncTask extends AsyncTask<List<ContestObject>,Void,Void> {
+        private RoomDAO dao;
+        private AddAllContestAsyncTask(RoomDAO roomDAO) {
+            this.dao = roomDAO;
+        }
+        @SafeVarargs
+        @Override
+        protected final Void doInBackground(List<ContestObject>... contestObjects) {
+            dao.addAllContest(contestObjects[0]);
             return null;
         }
     }

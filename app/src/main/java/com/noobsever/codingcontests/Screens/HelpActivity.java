@@ -35,7 +35,6 @@ public class HelpActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Help");
-        Toast.makeText(this, "Help", Toast.LENGTH_SHORT).show();
 
         helpObjectArrayList = new ArrayList<>();    //This ArrayList contains question,answers and an ArrowId which determines the View Visibility
         helpObjectArrayList.add(new HelpObject("Are notifications of contests sent by the app?","Yes the app also has a notification feature ",0));

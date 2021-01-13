@@ -21,9 +21,5 @@ public class NotificationActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Notifications");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        Toast.makeText(this, "Notifications Activity", Toast.LENGTH_SHORT).show();
-
-        startActivity(new Intent(this,RoomActivity.class));
     }
 }
