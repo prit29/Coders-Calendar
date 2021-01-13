@@ -3,12 +3,23 @@ package com.noobsever.codingcontests.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.noobsever.codingcontests.Adapters.CardAdapter;
+import com.noobsever.codingcontests.Models.ContestObject;
 import com.noobsever.codingcontests.R;
+import com.noobsever.codingcontests.Screens.LayoutOneActivity;
+import com.noobsever.codingcontests.ViewModel.RoomViewModel;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,10 +68,27 @@ public class Codeforces_Fragment extends Fragment {
         }
     }
 
+    private RecyclerView mRecyclerCodeforces;
+    private CardAdapter mCardAdapter;
+    RoomViewModel mRoomViewModel;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_codeforces, container, false);
+        View view = inflater.inflate(R.layout.fragment_codeforces, container, false);
+
+        mRecyclerCodeforces = view.findViewById(R.id.RecyclerCodeforces);
+        mRecyclerCodeforces.setLayoutManager(new LinearLayoutManager(getContext()));
+        mCardAdapter = new CardAdapter(getContext());
+        mRecyclerCodeforces.setAdapter(mCardAdapter);
+
+        mRoomViewModel = new ViewModelProvider(this).get(RoomViewModel.class);
+
+        List<ContestObject> contestByPlatform = mRoomViewModel.findContestByPlatform("codechef.com");
+
+        mCardAdapter.setData(contestByPlatform);
+
+        return view;
     }
 }

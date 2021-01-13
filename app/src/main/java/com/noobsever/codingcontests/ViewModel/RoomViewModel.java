@@ -36,7 +36,7 @@ public class RoomViewModel extends AndroidViewModel {
         return allContests;
     }
 
-    public ContestObject findContestByPlatform (String platform) {
+    public List<ContestObject> findContestByPlatform (String platform) {
         return (repository.findContestByPlatform(platform));
     }
 

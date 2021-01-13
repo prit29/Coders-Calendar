@@ -42,23 +42,23 @@ public class RoomActivity extends AppCompatActivity {
         });
 
 
-        testSearchQuery();
+       // testSearchQuery();
     }
 
-    private void testSearchQuery() {
-        // Valid query
-        String searchContest1 = "Kotlin Heroes 5: ICPC Round (Practice)";
-        ContestObject contestObject1 = mRoomViewModel.findContestByPlatform(searchContest1);
-        if(contestObject1!=null)
-            Log.i(TAG, contestObject1.getTitle()+" found");
-        else
-            Log.i(TAG,searchContest1+" not found");
-
-        List<ContestObject> list = mRoomViewModel.getContestByTime("2020-11-05T13:35:00","2020-11-12T14:35:00");
-        for(int i=0;i<list.size();i++) {
-            Log.i(TAG, "testSearchQuery: Found Contests : ["+list.get(i).getTitle()+" ]");
-        }
-    }
+//    private void testSearchQuery() {
+//        // Valid query
+//        String searchContest1 = "Kotlin Heroes 5: ICPC Round (Practice)";
+//        ContestObject contestObject1 = mRoomViewModel.findContestByPlatform(searchContest1);
+//        if(contestObject1!=null)
+//            Log.i(TAG, contestObject1.getTitle()+" found");
+//        else
+//            Log.i(TAG,searchContest1+" not found");
+//
+//        List<ContestObject> list = mRoomViewModel.getContestByTime("2020-11-05T13:35:00","2020-11-12T14:35:00");
+//        for(int i=0;i<list.size();i++) {
+//            Log.i(TAG, "testSearchQuery: Found Contests : ["+list.get(i).getTitle()+" ]");
+//        }
+//    }
 
     public void addDummyContests() {
         mRoomViewModel.addContest(new ContestObject("Kotlin Heroes 5: ICPC Round (Practice)","2020-11-05T13:35:00",

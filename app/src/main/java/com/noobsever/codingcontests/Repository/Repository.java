@@ -48,14 +48,14 @@ public class Repository {
         return allContests;
     }
 
-    public ContestObject findContestByPlatform(String platform) {
-        ContestObject obj = null;
+    public List<ContestObject> findContestByPlatform(String platform) {
+        List<ContestObject> contestObjectList = new ArrayList<>();
         try{
-            obj = new FindContestByPlatformAsyncTask(roomDAO).execute(platform).get();
+            contestObjectList = new FindContestByPlatformAsyncTask(roomDAO).execute(platform).get();
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return obj;
+        return contestObjectList;
     }
 
     // AsyncTasks
@@ -97,16 +97,17 @@ public class Repository {
         }
     }
 
-    private static class FindContestByPlatformAsyncTask extends AsyncTask<String,Void,ContestObject> {
+    private static class FindContestByPlatformAsyncTask extends AsyncTask<String,Void,List<ContestObject>> {
         private RoomDAO dao;
         private FindContestByPlatformAsyncTask(RoomDAO roomDAO) {
             this.dao = roomDAO;
         }
 
         @Override
-        protected ContestObject doInBackground(String... strings) {
-            ContestObject obj = dao.findContestByPlatform(strings[0]);
-            return obj;
+        protected List<ContestObject> doInBackground(String... strings) {
+            List<ContestObject> contests = new ArrayList<>();
+            contests = dao.findContestByPlatform(strings[0]);
+            return contests;
         }
     }
 

@@ -13,144 +13,101 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
+            android:layout_gravity="center"
             android:layout_height="80dp"
-            tools:srcCompat="@drawable/codeforces"
-            android:padding="8dp"
-            android:contentDescription=""
-            tools:ignore="ContentDescription" />
+            android:src="@drawable/codeforces"
+            android:padding="16dp"/>
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tv_round_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Codeforces Round"
-                android:textAlignment="center"
-                android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp"
                 android:textAppearance="?attr/textAppearanceHeadline6"
-                />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Codeforces Round" />
 
-            <RelativeLayout
-                android:id="@+id/rl_start"
-                android:layout_below="@+id/tv_round_name"
-                android:layout_alignParentStart="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                >
             <TextView
-              android:id="@+id/text_start"
+                android:id="@+id/text_start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="@string/start"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_centerHorizontal="true"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_round_name" />
 
-                <TextView
-                    android:id="@+id/date_start"
-                    android:layout_below="@+id/text_start"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="01-10-2020"
-                    android:textAllCaps="true"
-                    android:textStyle="normal"
-                    android:textSize="18sp"
-                    android:layout_marginTop="8dp"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?android:attr/textColorSecondary"
-                    />
-
-                <TextView
-                    android:id="@+id/time_start"
-                    android:layout_marginTop="8dp"
-                    android:layout_below="@+id/text_start"
-                    android:layout_toEndOf="@+id/date_start"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    tools:text="6:00 PM"
-                    android:textAllCaps="true"
-                    android:textStyle="normal"
-                    android:textSize="18sp"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?android:attr/textColorSecondary"
-                    />
-
-            </RelativeLayout>
+            <TextView
+                android:id="@+id/date_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_start"
+                tools:text="01-10-2020" />
 
             <View
                 android:id="@+id/view"
-                android:layout_toEndOf="@+id/rl_start"
-                android:layout_below="@+id/tv_round_name"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_width="1dp"
                 android:layout_height="70dp"
+                android:layout_below="@+id/tv_round_name"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
                 android:background="@color/colorAccent"
-                android:layout_marginTop="8dp"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_round_name" />
 
-            <RelativeLayout
-                android:id="@+id/rl_end"
-                android:layout_below="@id/tv_round_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="16dp"
-                android:layout_alignParentEnd="true"
-                >
             <TextView
                 android:id="@+id/text_end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/end"
-                android:textStyle="bold"
-                android:textSize="18sp"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp"
+                android:text="@string/end"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view"
+                app:layout_constraintTop_toBottomOf="@+id/tv_round_name" />
 
-                <TextView
-                    android:id="@+id/date_end"
-                    android:layout_below="@+id/text_end"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="2-10-2020"
-                    android:textAllCaps="true"
-                    android:textStyle="normal"
-                    android:textSize="18sp"
-                    android:layout_marginTop="8dp"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?android:attr/textColorSecondary"
-                    />
+            <TextView
+                android:id="@+id/date_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_end"
+                android:textAllCaps="true"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view"
+                app:layout_constraintTop_toBottomOf="@+id/text_end"
+                tools:text="2-10-2020" />
 
-                <TextView
-                    android:id="@+id/time_end"
-                    android:layout_marginTop="8dp"
-                    android:layout_below="@+id/text_end"
-                    android:layout_toEndOf="@+id/date_end"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="8:00 PM"
-                    android:textAllCaps="true"
-                    android:textStyle="normal"
-                    android:layout_marginStart="5dp"
-                    android:textSize="18sp"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?android:attr/textColorSecondary"
-                    />
-            </RelativeLayout>
-
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Buttons -->
         <LinearLayout

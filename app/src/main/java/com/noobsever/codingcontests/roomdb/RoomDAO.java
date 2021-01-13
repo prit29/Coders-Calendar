@@ -21,7 +21,7 @@ public interface RoomDAO {
     LiveData<List<ContestObject>> getAllContests();
 
     @Query("SELECT * FROM "+ Constants.CONTEST_OBJECT_TABLE_NAME +" WHERE platform = :Platform")
-    ContestObject findContestByPlatform(String Platform);
+    List<ContestObject> findContestByPlatform(String Platform);
 
     @Query("DELETE FROM "+Constants.CONTEST_OBJECT_TABLE_NAME)
     void deleteAllTuples();
