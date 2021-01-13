@@ -20,8 +20,5 @@ public class SuggestUsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Suggest Us");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-        Toast.makeText(this, "Suggest Us", Toast.LENGTH_SHORT).show();
     }
 }

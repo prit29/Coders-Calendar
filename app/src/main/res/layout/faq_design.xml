@@ -34,7 +34,8 @@
             android:id="@+id/help_answer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp">
+            android:textSize="14sp"
+            android:textColor="@color/design_default_color_on_primary">
         </TextView>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
