@@ -1,18 +1,21 @@
 package com.noobsever.codingcontests.Screens;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
-
 import android.widget.FrameLayout;
-import android.widget.Toast;
-
 import com.google.android.material.tabs.TabLayout;
+import com.noobsever.codingcontests.Adapters.CardAdapter;
+import com.noobsever.codingcontests.Adapters.PlatformsListAdapter;
 import com.noobsever.codingcontests.Adapters.ViewPagerAdapter;
 import com.noobsever.codingcontests.Models.ContestObject;
 import com.noobsever.codingcontests.R;
@@ -21,19 +24,22 @@ import com.noobsever.codingcontests.Utils.Methods;
 import com.noobsever.codingcontests.ViewModel.ApiViewModel;
 import com.noobsever.codingcontests.ViewModel.RoomViewModel;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class LayoutOneActivity extends BaseActivity{
 
     boolean doubleBackPressExitOnce = false;
-    TabLayout mTabLayout;
     ArrayList<String> mTabItemList;
-    ViewPager mViewPager;
 
     ApiViewModel apiViewModel;
-
     RoomViewModel mRoomViewModel;
+    RecyclerView titlesRecycler;
+    PlatformsListAdapter platformsListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,30 +48,36 @@ public class LayoutOneActivity extends BaseActivity{
         FrameLayout content = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_layout_one, content);
 
-        mTabLayout = findViewById(R.id.tab_layout);
-        mViewPager = findViewById(R.id.viewPager);
-
         // RoomDB data saving start -------------------------------------------------------------------
         mRoomViewModel = new ViewModelProvider(this).get(RoomViewModel.class);
 
-        // Testing Api Start -------------------------------------------------------------------------
-
-        apiViewModel = ViewModelProviders.of(this).get(ApiViewModel.class);
-        apiViewModel.init();
-        apiViewModel.getAllContests().observe(this, new Observer<List<ContestObject>>() {
-            @Override
-            public void onChanged(List<ContestObject> contestObjects) {
-                mRoomViewModel.deleteAllTuples();
-                mRoomViewModel.addAllContest(contestObjects);
-            }
-        });
-
-        apiViewModel.fetchContestFromApi();
+//        // Testing Api Start -------------------------------------------------------------------------
+//        apiViewModel = ViewModelProviders.of(this).get(ApiViewModel.class);
+//        apiViewModel.init();
+//        apiViewModel.getAllContests().observe(this, new Observer<List<ContestObject>>() {
+//            @Override
+//            public void onChanged(List<ContestObject> contestObjects) {
+//                mRoomViewModel.deleteAndAddAllTuples(contestObjects);
+//                //mRoomViewModel.addAllContest(contestObjects);
+//            }
+//        });
+//
+//        apiViewModel.fetchContestFromApi();
 
         mRoomViewModel.getAllContests().observe(this, new Observer<List<ContestObject>>() {
             @Override
             public void onChanged(List<ContestObject> contestObjects) {
-                Toast.makeText(LayoutOneActivity.this,""+contestObjects.size(),Toast.LENGTH_SHORT).show();
+                EventBus.getDefault().post(contestObjects);
+                Log.e("Objs From DB>>>>",String.valueOf(contestObjects.size()));
+                if(Methods.getIntPreferences(LayoutOneActivity.this,Constants.ISINTERNET,Constants.ISINTERNET)==0){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LayoutOneActivity.this)
+                            .setTitle("No Internet Connection")
+                            .setMessage("You are not connected to internet, so the App will be showing cached Entries.Try Again Restarting App with Internet.")
+                            .setPositiveButton("OK", null)
+                            .setIcon(R.drawable.ic_baseline_arrow_forward_ios_24);
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
             }
         });
 
@@ -95,22 +107,12 @@ public class LayoutOneActivity extends BaseActivity{
             Methods.saveTabItems(this,mTabItemList);
         }
 
-        addTabs(); // Populate the tabs.
-
-        /** Setting up View Pager and attaching fragments */
-        mTabLayout.setupWithViewPager(mViewPager);
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),0);
-        viewPagerAdapter.initFragments(mTabItemList);
-        mViewPager.setAdapter(viewPagerAdapter);
+        titlesRecycler = findViewById(R.id.titles_recycler_view);
+        titlesRecycler.setLayoutManager(new LinearLayoutManager(this));
+        platformsListAdapter = new PlatformsListAdapter(this,mTabItemList);
+        titlesRecycler.setAdapter(platformsListAdapter);
 
         saveActivity();
-    }
-
-    public void addTabs() {
-        // Using a list of strings to dynamically add tabs.
-        for(String s : mTabItemList) {
-            mTabLayout.addTab(mTabLayout.newTab().setText(s));
-        }
     }
 
     @Override

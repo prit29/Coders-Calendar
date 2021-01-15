@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,26 +7,29 @@
     android:layout_height="match_parent"
     tools:context=".Screens.LayoutOneActivity">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:paddingHorizontal="8dp"
-                android:layout_height="wrap_content"
-                app:tabMode="scrollable"
-                app:tabUnboundedRipple="false">
+                <ImageView
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/home_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </ImageView>
 
-            </com.google.android.material.tabs.TabLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/titles_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        </com.google.android.material.appbar.AppBarLayout>
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+                </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 

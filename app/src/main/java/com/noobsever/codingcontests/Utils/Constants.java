@@ -19,4 +19,6 @@ public class Constants {
     public static final String CONTEST_OBJECT_TABLE_NAME = "CONTEST_OBJECT_TABLE";
     public static final String ROOM_DB_NAME = "CONTEST_DB";
     public static final String API_URL = "https://coders-calendar.herokuapp.com";
+    public static final String WEBSITE = "website";
+    public static final String ISINTERNET = "isInterNet";
 }
