@@ -3,23 +3,33 @@ package com.noobsever.codingcontests.Screens;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
-
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.navigation.NavigationView;
+import com.noobsever.codingcontests.Models.ContestObject;
 import com.noobsever.codingcontests.R;
+import com.noobsever.codingcontests.Utils.Constants;
+import com.noobsever.codingcontests.Utils.Methods;
+import com.noobsever.codingcontests.ViewModel.ApiViewModel;
+import com.noobsever.codingcontests.ViewModel.RoomViewModel;
+
+import java.util.List;
 
 public class BaseActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
+    ApiViewModel apiViewModel;
+    RoomViewModel mRoomViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +100,32 @@ public class BaseActivity extends AppCompatActivity {
                     }
                 });
 
+        mRoomViewModel = new ViewModelProvider(this).get(RoomViewModel.class);
+        apiViewModel = new ViewModelProvider(this).get(ApiViewModel.class);
+        apiViewModel.init();
+
+        new Methods.InternetCheck(this).isInternetConnectionAvailable(new Methods.InternetCheck.InternetCheckListener() {
+            @Override
+            public void onComplete(boolean connected) {
+                if(connected){
+                    Log.e("INTERNET","CONNECTED");
+                    Methods.setPreferences(BaseActivity.this,Constants.ISINTERNET, Constants.ISINTERNET,1);
+                    apiViewModel.fetchContestFromApi();
+                }else{
+                    Methods.setPreferences(BaseActivity.this,Constants.ISINTERNET, Constants.ISINTERNET,0);
+                }
+            }
+        });
+
+        apiViewModel.getAllContests().observe(BaseActivity.this, new Observer<List<ContestObject>>() {
+            @Override
+            public void onChanged(List<ContestObject> contestObjects) {
+                mRoomViewModel.deleteAndAddAllTuples(contestObjects);
+            }
+        });
 
     }
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

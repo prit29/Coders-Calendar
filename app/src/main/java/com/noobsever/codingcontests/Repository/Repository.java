@@ -2,6 +2,7 @@ package com.noobsever.codingcontests.Repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -30,8 +31,8 @@ public class Repository {
         new AddAllContestAsyncTask(roomDAO).execute(AllContest);
     }
 
-    public void deleteAllTuples() {
-        new DeleteTuplesAsyncTask(roomDAO).execute();
+    public void deleteAndAddAllTuples(List<ContestObject> AllContest) {
+        new DeleteAndAddAllTuplesAsyncTask(roomDAO).execute(AllContest);
     }
 
     public List<ContestObject> getContestByTime(String start_date, String end_date) {
@@ -84,15 +85,17 @@ public class Repository {
         }
     }
 
-    private static class DeleteTuplesAsyncTask extends AsyncTask<Void,Void,Void> {
+    private static class DeleteAndAddAllTuplesAsyncTask extends AsyncTask<List<ContestObject>,Void,Void> {
         private RoomDAO dao;
-        private DeleteTuplesAsyncTask(RoomDAO roomDAO) {
+        private DeleteAndAddAllTuplesAsyncTask(RoomDAO roomDAO) {
             this.dao = roomDAO;
         }
 
+        @SafeVarargs
         @Override
-        protected Void doInBackground(Void... voids) {
+        protected final Void doInBackground(List<ContestObject>... contestObjects) {
             dao.deleteAllTuples();
+            dao.addAllContest(contestObjects[0]);
             return null;
         }
     }

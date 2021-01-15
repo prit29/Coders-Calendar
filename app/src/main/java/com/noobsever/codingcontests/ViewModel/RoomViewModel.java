@@ -28,8 +28,8 @@ public class RoomViewModel extends AndroidViewModel {
 
     public void addAllContest(List<ContestObject> AllContest) { repository.addAllContest(AllContest);}
 
-    public void deleteAllTuples() {
-        repository.deleteAllTuples();
+    public void deleteAndAddAllTuples(List<ContestObject> contestObjects) {
+        repository.deleteAndAddAllTuples(contestObjects);
     }
 
     public LiveData<List<ContestObject>> getAllContests() {

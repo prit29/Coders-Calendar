@@ -1,12 +1,25 @@
 package com.noobsever.codingcontests.Utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static android.content.Context.CONNECTIVITY_SERVICE;
 
 public class Methods {
 
@@ -111,5 +124,76 @@ public class Methods {
         String text = gson.toJson(list);
         editor.putString(Constants.TAB_ITEMS_ARRAYLIST_KEY,text);
         editor.apply();
+    }
+
+    /** Method to map contest name with its website */
+    public static String getSiteName(String query){
+        Map<String, String> map = new HashMap<>();
+
+        map.put(Constants.CODEFORCES,"codeforces.com");
+        map.put(Constants.CODECHEF,"codechef.com");
+        map.put(Constants.HACKERRANK,"topcoder.com");
+        map.put(Constants.HACKEREARTH,"hackerearth.com");
+        map.put(Constants.SPOJ,"spoj.com");
+        map.put(Constants.ATCODER,"atcoder.jp");
+        map.put(Constants.LEETCODE,"leetcode.com");
+        map.put(Constants.GOOGLE,"codingcompetitions.withgoogle.com");
+
+        return map.get(query);
+    }
+
+    public static class InternetCheck extends AsyncTask<Void, Void, Void> {
+
+
+        private Activity activity;
+        private InternetCheckListener listener;
+
+        public InternetCheck(Activity x){
+            activity= x;
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+
+            boolean b = hasInternetAccess();
+            listener.onComplete(b);
+
+            return null;
+        }
+
+
+        public void isInternetConnectionAvailable(InternetCheckListener x){
+            listener=x;
+            execute();
+        }
+
+        private boolean isNetworkAvailable() {
+            ConnectivityManager connectivityManager = (ConnectivityManager) activity.getSystemService(CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            return activeNetworkInfo != null;
+        }
+        private boolean hasInternetAccess() {
+            if (isNetworkAvailable()) {
+                try {
+                    HttpURLConnection urlc = (HttpURLConnection) (new URL("http://clients3.google.com/generate_204").openConnection());
+                    urlc.setRequestProperty("User-Agent", "Android");
+                    urlc.setRequestProperty("Connection", "close");
+                    urlc.setConnectTimeout(1500);
+                    urlc.connect();
+                    return (urlc.getResponseCode() == 204 &&
+                            urlc.getContentLength() == 0);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Log.d("TAG", "No network available!");
+            }
+            return false;
+        }
+
+        public interface InternetCheckListener{
+            void onComplete(boolean connected);
+        }
     }
 }
