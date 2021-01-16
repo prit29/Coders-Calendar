@@ -19,7 +19,7 @@ import com.noobsever.codingcontests.Utils.Methods;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class Settings extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
 
     Toolbar toolbar;
@@ -68,13 +68,13 @@ public class Settings extends AppCompatActivity {
                 if(isChecked)
                 {
                     //If 12 hour switch checked, 1 is stored in sharedPreferences indicating ON
-                    Methods.setPreferences(Settings.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE,1);
+                    Methods.setPreferences(SettingsActivity.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE,1);
                     switchTwentyFour.setChecked(false);
                 }
                 else
                 {
                     //If 12 hour switch unchecked, 0 is stored in sharedPreferences indicating OFF and 24 hr switch checked
-                    Methods.setPreferences(Settings.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE,0);
+                    Methods.setPreferences(SettingsActivity.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE,0);
                     switchTwentyFour.setChecked(true);
                 }
             }
@@ -86,13 +86,13 @@ public class Settings extends AppCompatActivity {
                 if(isChecked)
                 {
                     //If 24 hour switch checked, 0 is stored in sharedPreferences indicating 12 hour switch OFF
-                    Methods.setPreferences(Settings.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE,0);
+                    Methods.setPreferences(SettingsActivity.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE,0);
                     switchTwelve.setChecked(false);
                 }
                 else
                 {
                     //If 24 hour switch checked, 1 is stored in sharedPreferences indicating 12 hour switch ON
-                    Methods.setPreferences(Settings.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE,1);
+                    Methods.setPreferences(SettingsActivity.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE,1);
                     switchTwelve.setChecked(true);
 
                 }
@@ -103,10 +103,10 @@ public class Settings extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 //If notification switch ON, 1 is stored in sharedPreferences
                 if(isChecked)
-                    Methods.setPreferences(Settings.this, Constants.SWITCH_NOTIFICATION,Constants.SWITCH_NOTIFICATION,1);
+                    Methods.setPreferences(SettingsActivity.this, Constants.SWITCH_NOTIFICATION,Constants.SWITCH_NOTIFICATION,1);
                     //If notification switch ON, 0 is stored in sharedPreferences
                 else
-                    Methods.setPreferences(Settings.this,Constants.SWITCH_NOTIFICATION,Constants.SWITCH_NOTIFICATION,0);
+                    Methods.setPreferences(SettingsActivity.this,Constants.SWITCH_NOTIFICATION,Constants.SWITCH_NOTIFICATION,0);
             }
         });
 
@@ -135,10 +135,10 @@ public class Settings extends AppCompatActivity {
 
         Methods.saveTabItems(this,checkedItem);
 
-        if(Methods.getIntPreferences(Settings.this, Constants.LAYOUT_SWITCH_KEY,Constants.CURRENT_ACTIVITY)==1)
-            startActivity(new Intent(Settings.this,LayoutOneActivity.class));
+        if(Methods.getIntPreferences(SettingsActivity.this, Constants.LAYOUT_SWITCH_KEY,Constants.CURRENT_ACTIVITY)==1)
+            startActivity(new Intent(SettingsActivity.this,LayoutOneActivity.class));
         else
-            startActivity(new Intent(Settings.this,LayoutTwoActivity.class));
+            startActivity(new Intent(SettingsActivity.this,LayoutTwoActivity.class));
         finishAffinity();
     }
 
@@ -157,9 +157,9 @@ public class Settings extends AppCompatActivity {
     /***/
     public void restoreToggledItemsState()
     {
-        switchTwelve.setChecked(Methods.getIntPreferences(Settings.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE)!=0);
-        switchTwentyFour.setChecked(Methods.getIntPreferences(Settings.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE)==0);
-        switchNotification.setChecked(Methods.getIntPreferences(Settings.this, Constants.SWITCH_NOTIFICATION, Constants.SWITCH_NOTIFICATION) != 0);
+        switchTwelve.setChecked(Methods.getIntPreferences(SettingsActivity.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE)!=0);
+        switchTwentyFour.setChecked(Methods.getIntPreferences(SettingsActivity.this,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE)==0);
+        switchNotification.setChecked(Methods.getIntPreferences(SettingsActivity.this, Constants.SWITCH_NOTIFICATION, Constants.SWITCH_NOTIFICATION) != 0);
     }
 
     // Fixing : Back button on Appbar of settings activity won't function the expected way.

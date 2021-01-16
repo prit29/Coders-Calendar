@@ -64,7 +64,7 @@ public class BaseActivity extends AppCompatActivity {
                                 drawerLayout.closeDrawers();
                                 new Handler().postDelayed(new Runnable() {
                                     public void run() {
-                                        startActivity(new Intent(getApplicationContext(), Settings.class));
+                                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                                     }
                                 }, 500);
                                 break;

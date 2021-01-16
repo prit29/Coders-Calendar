@@ -7,29 +7,29 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.noobsever.codingcontests.Models.ContestObject;
-import com.noobsever.codingcontests.Repository.Repository;
+import com.noobsever.codingcontests.Repository.RoomRepository;
 
 import java.util.List;
 
 public class RoomViewModel extends AndroidViewModel {
 
-    private Repository repository;
+    private RoomRepository roomRepository;
     private LiveData<List<ContestObject>> allContests;
 
     public RoomViewModel(@NonNull Application application) {
         super(application);
-        repository = new Repository(application);
-        allContests = repository.getAllContests();
+        roomRepository = new RoomRepository(application);
+        allContests = roomRepository.getAllContests();
     }
 
     public void addContest(ContestObject contestObject) {
-        repository.addContest(contestObject);
+        roomRepository.addContest(contestObject);
     }
 
-    public void addAllContest(List<ContestObject> AllContest) { repository.addAllContest(AllContest);}
+    public void addAllContest(List<ContestObject> AllContest) { roomRepository.addAllContest(AllContest);}
 
     public void deleteAndAddAllTuples(List<ContestObject> contestObjects) {
-        repository.deleteAndAddAllTuples(contestObjects);
+        roomRepository.deleteAndAddAllTuples(contestObjects);
     }
 
     public LiveData<List<ContestObject>> getAllContests() {
@@ -37,10 +37,10 @@ public class RoomViewModel extends AndroidViewModel {
     }
 
     public List<ContestObject> findContestByPlatform (String platform) {
-        return (repository.findContestByPlatform(platform));
+        return (roomRepository.findContestByPlatform(platform));
     }
 
     public List<ContestObject> getContestByTime(String start_date, String end_date) {
-        return (repository.getContestByTime(start_date,end_date));
+        return (roomRepository.getContestByTime(start_date,end_date));
     }
 }

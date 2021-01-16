@@ -18,7 +18,7 @@ import com.noobsever.codingcontests.ViewModel.RoomViewModel;
 import java.util.List;
 import java.util.Objects;
 
-public class ShowContestCards extends AppCompatActivity {
+public class ShowContestCardsActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     private RecyclerView mRecyclerCodeforces;

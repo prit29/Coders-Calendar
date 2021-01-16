@@ -8,8 +8,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.noobsever.codingcontests.Models.ApiResponse;
 import com.noobsever.codingcontests.Models.ContestObject;
-import com.noobsever.codingcontests.services.APIClient;
-import com.noobsever.codingcontests.services.ApiInterface;
+import com.noobsever.codingcontests.Services.APIClient;
+import com.noobsever.codingcontests.Services.ApiInterface;
 
 import java.util.List;
 import java.util.Objects;

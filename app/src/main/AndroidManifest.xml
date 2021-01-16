@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Screens.ShowContestCards"></activity>
+        <activity android:name=".Screens.ShowContestCardsActivity"></activity>
         <activity android:name=".Screens.RoomActivity" />
         <activity
             android:name=".Screens.SuggestUsActivity"
@@ -26,7 +26,7 @@
             android:parentActivityName=".Screens.BaseActivity" />
         <activity android:name=".Screens.BaseActivity" />
         <activity
-            android:name=".Screens.Settings"
+            android:name=".Screens.SettingsActivity"
             android:parentActivityName=".Screens.BaseActivity" />
         <activity android:name=".Screens.SplashScreenActivity">
             <intent-filter>

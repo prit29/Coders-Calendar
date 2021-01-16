@@ -1,4 +1,4 @@
-package com.noobsever.codingcontests.roomdb;
+package com.noobsever.codingcontests.RoomDB;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;

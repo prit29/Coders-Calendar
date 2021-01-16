@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".Screens.HelpActivity">
 
-    <include layout="@layout/app_bar_layout"/>
+    <include layout="@layout/layout_app_bar"/>
     <TextView
         android:id="@+id/faq_text_view"
         android:layout_width="wrap_content"

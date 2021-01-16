@@ -5,14 +5,14 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <include layout="@layout/app_bar_layout"/>
+    <include layout="@layout/layout_app_bar"/>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Screens.Settings"
+    tools:context=".Screens.SettingsActivity"
     android:orientation="vertical"
     android:theme="@style/Widget.MaterialComponents.Toolbar">
 

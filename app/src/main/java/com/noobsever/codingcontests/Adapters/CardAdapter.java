@@ -38,7 +38,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardAdapterVie
     @NonNull
     @Override
     public CardAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.card_design,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.layout_contest_card,parent,false);
         return new CardAdapterViewHolder(v);
     }
 

@@ -2,22 +2,21 @@ package com.noobsever.codingcontests.Repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
 import com.noobsever.codingcontests.Models.ContestObject;
-import com.noobsever.codingcontests.roomdb.RoomDAO;
-import com.noobsever.codingcontests.roomdb.RoomDB;
+import com.noobsever.codingcontests.RoomDB.RoomDAO;
+import com.noobsever.codingcontests.RoomDB.RoomDB;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Repository {
+public class RoomRepository {
     private RoomDAO roomDAO;
     private LiveData<List<ContestObject>> allContests;
 
-    public Repository(Application application) {
+    public RoomRepository(Application application) {
         RoomDB roomDB = RoomDB.getDatabaseInstance(application);
         roomDAO = roomDB.roomDAO();
         allContests = roomDAO.getAllContests();

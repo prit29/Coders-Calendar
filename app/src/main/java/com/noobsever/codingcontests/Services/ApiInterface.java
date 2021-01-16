@@ -1,4 +1,4 @@
-package com.noobsever.codingcontests.services;
+package com.noobsever.codingcontests.Services;
 
 import com.noobsever.codingcontests.Models.ApiResponse;
 

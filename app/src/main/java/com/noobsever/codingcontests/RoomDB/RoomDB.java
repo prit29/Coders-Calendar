@@ -1,4 +1,4 @@
-package com.noobsever.codingcontests.roomdb;
+package com.noobsever.codingcontests.RoomDB;
 
 import android.content.Context;
 

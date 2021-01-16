@@ -5,14 +5,13 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.noobsever.codingcontests.R;
-import com.noobsever.codingcontests.Screens.ShowContestCards;
+import com.noobsever.codingcontests.Screens.ShowContestCardsActivity;
 import com.noobsever.codingcontests.Utils.Constants;
 
 import java.util.List;
@@ -42,7 +41,7 @@ public class PlatformsListAdapter extends RecyclerView.Adapter<PlatformsListAdap
     @NonNull
     @Override
     public PlatformsListAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.contest_title_layout,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.layout_contest_title,parent,false);
         return new PlatformsListAdapterViewHolder(v);
     }
 
@@ -53,7 +52,7 @@ public class PlatformsListAdapter extends RecyclerView.Adapter<PlatformsListAdap
         holder.contestTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(context, ShowContestCards.class).putExtra(Constants.WEBSITE,ContestObjectArrayList.get(position)));
+                context.startActivity(new Intent(context, ShowContestCardsActivity.class).putExtra(Constants.WEBSITE,ContestObjectArrayList.get(position)));
             }
         });
     }

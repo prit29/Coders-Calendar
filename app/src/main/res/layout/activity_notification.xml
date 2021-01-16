@@ -8,5 +8,5 @@
     style="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
     >
 
-    <include layout="@layout/app_bar_layout"/>
+    <include layout="@layout/layout_app_bar"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
