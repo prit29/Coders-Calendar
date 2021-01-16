@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -30,6 +31,7 @@ public class BaseActivity extends AppCompatActivity {
     Toolbar toolbar;
     ApiViewModel apiViewModel;
     RoomViewModel mRoomViewModel;
+    boolean doubleBackPressExitOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +128,26 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            if(doubleBackPressExitOnce)
+            {
+                super.onBackPressed();
+                return;
+            }
+            this.doubleBackPressExitOnce = true;
+            Methods.showToast(this,"Press Back Again to Exit");
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubleBackPressExitOnce = false;
+                }
+            },2000);
+        }
+    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

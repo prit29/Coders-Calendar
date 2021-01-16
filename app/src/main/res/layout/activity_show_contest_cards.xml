@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Screens.ShowContestCardsActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
+    <com.google.android.material.appbar.MaterialToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/app_bar_of_cards"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -15,30 +16,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="?attr/colorOnSurface"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android" />
+        app:menu="@menu/contest_search_menu"
+        app:titleTextColor="?attr/colorOnSurface" />
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_margin="8dp"
-        android:backgroundTint="#000000"
-        app:layout_constraintTop_toBottomOf="@id/app_bar_of_cards"
         android:id="@+id/paltform_logo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardElevation="32dp"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_of_cards">
+
         <ImageView
-            android:layout_marginHorizontal="32dp"
+            android:id="@+id/contest_image"
             android:layout_width="wrap_content"
-            android:src="@drawable/codeforces"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/codeforces" />
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ContestCardsRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/paltform_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

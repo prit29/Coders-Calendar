@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Screens.ShowContestCardsActivity"></activity>
+        <activity android:name=".Screens.ShowContestCardsActivity"
+            android:parentActivityName=".Screens.LayoutOneActivity"/>
         <activity android:name=".Screens.RoomActivity" />
         <activity
             android:name=".Screens.SuggestUsActivity"

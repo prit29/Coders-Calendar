@@ -33,7 +33,6 @@ import java.util.List;
 
 public class LayoutOneActivity extends BaseActivity{
 
-    boolean doubleBackPressExitOnce = false;
     ArrayList<String> mTabItemList;
 
     ApiViewModel apiViewModel;
@@ -113,23 +112,6 @@ public class LayoutOneActivity extends BaseActivity{
         titlesRecycler.setAdapter(platformsListAdapter);
 
         saveActivity();
-    }
-
-    @Override
-    public void onBackPressed() {
-        if(doubleBackPressExitOnce)
-        {
-            super.onBackPressed();
-            return;
-        }
-        this.doubleBackPressExitOnce = true;
-        Methods.showToast(this,"Press Back Again to Exit");
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                doubleBackPressExitOnce = false;
-            }
-        },2000);
     }
 
     //  Function to remember current activity.

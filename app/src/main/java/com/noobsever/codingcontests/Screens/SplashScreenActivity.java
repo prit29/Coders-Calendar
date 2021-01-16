@@ -24,7 +24,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                     startActivity(new Intent(SplashScreenActivity.this, LayoutTwoActivity.class));
                 finish();
             }
-        }, 2000);
+        }, 1000);
     }
 
     //  Function to get the last opened activity.
