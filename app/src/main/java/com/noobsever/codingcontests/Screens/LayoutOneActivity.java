@@ -23,6 +23,8 @@ import com.noobsever.codingcontests.Utils.Constants;
 import com.noobsever.codingcontests.Utils.Methods;
 import com.noobsever.codingcontests.ViewModel.ApiViewModel;
 import com.noobsever.codingcontests.ViewModel.RoomViewModel;
+import com.schibsted.spain.parallaxlayerlayout.ParallaxLayerLayout;
+import com.schibsted.spain.parallaxlayerlayout.SensorTranslationUpdater;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -39,6 +41,8 @@ public class LayoutOneActivity extends BaseActivity{
     RoomViewModel mRoomViewModel;
     RecyclerView titlesRecycler;
     PlatformsListAdapter platformsListAdapter;
+    ParallaxLayerLayout mParallaxLayout;
+    SensorTranslationUpdater sensorTranslationUpdater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,10 @@ public class LayoutOneActivity extends BaseActivity{
 
         FrameLayout content = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_layout_one, content);
+
+        mParallaxLayout = findViewById(R.id.ActivityOneParallax);
+        sensorTranslationUpdater = new SensorTranslationUpdater(this);
+        mParallaxLayout.setTranslationUpdater(sensorTranslationUpdater);
 
         // RoomDB data saving start -------------------------------------------------------------------
         mRoomViewModel = new ViewModelProvider(this).get(RoomViewModel.class);
@@ -127,12 +135,21 @@ public class LayoutOneActivity extends BaseActivity{
                 startActivity(new Intent(LayoutOneActivity.this,LayoutTwoActivity.class));
                 finishAffinity();
                 break;
-            case R.id.menu_search:
-                // add action
-                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sensorTranslationUpdater.registerSensorManager();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorTranslationUpdater.unregisterSensorManager();
     }
 }
