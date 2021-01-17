@@ -54,21 +54,21 @@ public class ShowContestCardsActivity extends AppCompatActivity {
         mCardAdapter.setData(contestByPlatform);
 
         if(website.equals(Constants.CODEFORCES)){
-            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.codeforces));
+            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.codeforces2));
         } else if(website.equals(Constants.CODECHEF)){
-            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.codechef));
+            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.codechef2));
         } else if(website.equals(Constants.HACKEREARTH)){
-            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.hackerearth));
+            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.hackerearth2));
         }else if(website.equals(Constants.HACKERRANK)){
-            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.hackerrank));
+            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.hackerrank2));
         }else if(website.equals(Constants.LEETCODE)){
-            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.leetcode));
+            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.leetcode3));
         }else if(website.equals(Constants.SPOJ)){
-            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.spoj));
+            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.spoj2));
         }else if(website.equals(Constants.GOOGLE)){
-            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.google));
+            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.google2));
         }else if(website.equals(Constants.ATCODER)){
-            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.atcoder));
+            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.atcoder2));
         }
 
     }
