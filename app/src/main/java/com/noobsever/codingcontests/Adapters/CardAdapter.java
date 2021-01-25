@@ -1,9 +1,11 @@
 package com.noobsever.codingcontests.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -62,31 +64,65 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardAdapterVie
 
     @Override
     public void onBindViewHolder(@NonNull final CardAdapterViewHolder holder, final int position) {
+
+        holder.mCard.setAnimation(AnimationUtils.loadAnimation(context,R.anim.pop_in));
+
         holder.mRoundName.setText(ContestObjectArrayList.get(position).getTitle());
         holder.mDateEnd.setText(ContestObjectArrayList.get(position).getEnd());
         holder.mDateStart.setText(ContestObjectArrayList.get(position).getStart());
+        holder.mDuration.setText(ContestObjectArrayList.get(position).getDuration());
+
+        if(CheckMoreFlag.get(position))
+        {
+            holder.mShare.show();
+            holder.mNotification.show();
+            holder.mReminder.show();
+        }
+        else{
+            holder.mShare.hide();
+            holder.mNotification.hide();
+            holder.mReminder.hide();
+        }
+
         holder.mCard.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                Toast.makeText(context,"Implement Share Feature Here "+position,Toast.LENGTH_SHORT).show();
+
+                if(CheckMoreFlag.get(position)){
+                    holder.mShare.hide();
+                    holder.mNotification.hide();
+                    holder.mReminder.hide();
+                }
+                else
+                {
+                    holder.mShare.show();
+                    holder.mNotification.show();
+                    holder.mReminder.show();
+                }
+                CheckMoreFlag.set(position,!CheckMoreFlag.get(position));
+
                 return true;
             }
         });
+
         holder.mMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(CheckMoreFlag.get(position)){
-                    holder.mReminder.hide();
-                    holder.mNotification.hide();
                     holder.mShare.hide();
-                } else {
-                    holder.mReminder.show();
-                    holder.mNotification.show();
+                    holder.mNotification.hide();
+                    holder.mReminder.hide();
+                }
+                else
+                {
                     holder.mShare.show();
+                    holder.mNotification.show();
+                    holder.mReminder.show();
                 }
                 CheckMoreFlag.set(position,!CheckMoreFlag.get(position));
             }
         });
+
         holder.mShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,10 +151,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardAdapterVie
     public static class CardAdapterViewHolder extends RecyclerView.ViewHolder{
         private final TextView mRoundName;
         private final TextView mDateStart;
-        private final TextView mDateEnd;
+        private final TextView mDateEnd,mDuration;
         private final MaterialCardView mCard;
         private final FloatingActionButton mShare,mNotification,mReminder;
         private final ImageView mMore;
+
         public CardAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             mRoundName = itemView.findViewById(R.id.tv_round_name);
@@ -129,7 +166,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardAdapterVie
             mNotification = itemView.findViewById(R.id.fab_notification);
             mReminder = itemView.findViewById(R.id.fab_reminder);
             mMore = itemView.findViewById(R.id.more_option);
+            mDuration = itemView.findViewById(R.id.duration);
         }
+
     }
 
     @Override

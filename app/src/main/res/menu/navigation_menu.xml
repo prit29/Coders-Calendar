@@ -26,10 +26,6 @@
                 android:icon="@drawable/ic_baseline_share_24"
                 android:title="@string/navigation_share" />
             <item
-                android:id="@+id/nav_rate"
-                android:icon="@drawable/ic_baseline_star_24"
-                android:title="@string/navigation_rate" />
-            <item
                 android:id="@+id/nav_suggest"
                 android:icon="@drawable/ic_baseline_contact_mail_24"
                 android:title="@string/navigation_suggest" />

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,6 +56,10 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpAdapter.HelpAdapterVie
                     //This condition implements the logic to expand the answer when question is unexpanded, expand the answer by set ArrowID to 1,
                     helpObjectArrayList.get(position).setArrowID(1);
                     holder.answerTextView.setVisibility(View.VISIBLE);  //Change the visibility of Answer View to View.VISIBLE
+                    holder.arrowImageView.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_48);
+
+                    holder.answerTextView.setAnimation(AnimationUtils.loadAnimation(context,R.anim.fade_scale));
+
                     if(dropDownIndex == -1)
                     {
                         dropDownIndex = position;
@@ -62,17 +67,19 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpAdapter.HelpAdapterVie
                     else
                     {
                         helpObjectArrayList.get(dropDownIndex).setArrowID(0);
+                        notifyItemChanged(dropDownIndex);
                         dropDownIndex = position;
                     }
+
                 }
                 else
                 {
                     // This condition implements logic to close the expanded question
                     dropDownIndex = -1;
                     helpObjectArrayList.get(position).setArrowID(0);
+                    holder.arrowImageView.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_48);
                     holder.answerTextView.setVisibility(View.GONE);
                 }
-                notifyDataSetChanged();
             }
         });
     }
