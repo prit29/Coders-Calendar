@@ -1,6 +1,7 @@
 package com.noobsever.codingcontests.Screens;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -15,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.navigation.NavigationView;
+import com.noobsever.codingcontests.BuildConfig;
 import com.noobsever.codingcontests.Models.ContestObject;
 import com.noobsever.codingcontests.R;
 import com.noobsever.codingcontests.Utils.Constants;
@@ -94,6 +96,31 @@ public class BaseActivity extends AppCompatActivity {
                                 new Handler().postDelayed(new Runnable() {
                                     public void run() {
                                         startActivity(new Intent(getApplicationContext(), SuggestUsActivity.class));
+                                    }
+                                }, 500);
+                                break;
+
+                            case R.id.nav_share:
+                                drawerLayout.closeDrawers();
+                                new Handler().postDelayed(new Runnable() {
+                                    public void run() {
+                                        Intent sendIntent = new Intent();
+                                        sendIntent.setAction(Intent.ACTION_SEND);
+                                        sendIntent.putExtra(Intent.EXTRA_TEXT,
+                                                "Hey get ready to give back to back competitive coding contests, Check out our Coder's Calendar app at: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID);
+                                        sendIntent.setType("text/plain");
+                                        startActivity(sendIntent);
+                                    }
+                                }, 500);
+                                break;
+
+                            case R.id.nav_open:
+                                drawerLayout.closeDrawers();
+                                new Handler().postDelayed(new Runnable() {
+                                    public void run() {
+                                        Uri uri = Uri.parse("https://github.com/prit29/Coders-Calendar");
+                                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                        startActivity(intent);
                                     }
                                 }, 500);
                                 break;

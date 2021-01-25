@@ -7,8 +7,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -20,6 +22,7 @@ import com.noobsever.codingcontests.Utils.Constants;
 import com.noobsever.codingcontests.Utils.Methods;
 import com.noobsever.codingcontests.ViewModel.RoomViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,6 +35,7 @@ public class ShowContestCardsActivity extends AppCompatActivity {
     RoomViewModel mRoomViewModel;
     List<ContestObject> contestByPlatform;
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,26 +54,44 @@ public class ShowContestCardsActivity extends AppCompatActivity {
         mCardAdapter = new CardAdapter(this);
         mRecyclerCodeforces.setAdapter(mCardAdapter);
         mRoomViewModel = new ViewModelProvider(this).get(RoomViewModel.class);
-        contestByPlatform = mRoomViewModel.findContestByPlatform(Methods.getSiteName(website));;
+        contestByPlatform = new ArrayList<>();
         mCardAdapter.setData(contestByPlatform);
 
-        if(website.equals(Constants.CODEFORCES)){
-            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.codeforces2));
-        } else if(website.equals(Constants.CODECHEF)){
-            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.codechef2));
-        } else if(website.equals(Constants.HACKEREARTH)){
-            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.hackerearth2));
-        }else if(website.equals(Constants.HACKERRANK)){
-            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.hackerrank2));
-        }else if(website.equals(Constants.LEETCODE)){
-            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.leetcode3));
-        }else if(website.equals(Constants.SPOJ)){
-            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.spoj2));
-        }else if(website.equals(Constants.GOOGLE)){
-            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.google2));
-        }else if(website.equals(Constants.ATCODER)){
-            mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.atcoder2));
+        assert website != null;
+        switch (website) {
+            case Constants.CODEFORCES:
+                mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.codeforces2));
+                break;
+            case Constants.CODECHEF:
+                mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.codechef2));
+                break;
+            case Constants.HACKEREARTH:
+                mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.hackerearth2));
+                break;
+            case Constants.HACKERRANK:
+                mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.hackerrank2));
+                break;
+            case Constants.LEETCODE:
+                mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.leetcode3));
+                break;
+            case Constants.SPOJ:
+                mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.spoj2));
+                break;
+            case Constants.GOOGLE:
+                mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.google2));
+                break;
+            case Constants.ATCODER:
+                mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.atcoder2));
+                break;
         }
+
+        contestByPlatform = mRoomViewModel.findContestByPlatform(Methods.getSiteName(website));
+        for(ContestObject co: contestByPlatform){
+           co.setStart(Methods.utcToLocalTimeZone(ShowContestCardsActivity.this,co.getStart()));
+           co.setEnd(Methods.utcToLocalTimeZone(ShowContestCardsActivity.this,co.getEnd()));
+           co.setDuration(Methods.secondToFormatted(co.getDuration()));
+        }
+        mCardAdapter.setData(contestByPlatform);
 
     }
 
@@ -79,6 +101,7 @@ public class ShowContestCardsActivity extends AppCompatActivity {
         return true;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

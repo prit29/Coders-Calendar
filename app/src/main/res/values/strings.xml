@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Coder\'s Calendar</string>
-    <string name="copyright">© TeQ Prit</string>
+    <string name="copyright">© Coder\'s Calendar</string>
     <string name="navigation_setting">Settings</string>
     <string name="navigation_notification">Notifications</string>
     <string name="navigation_signout">Signout</string>
@@ -29,8 +29,8 @@
 
     <string name="set_notification">Set Notification</string>
     <string name="set_reminder">Set Reminder</string>
-    <string name="start"><u>START</u></string>
-    <string name="end"><u>END</u></string>
+    <string name="Start">START</string>
+    <string name="End">END</string>
     <string name="notification">Notifications</string>
     <string name="enable_notif">Enable Notifications</string>
     <string name="week_1">1 week</string>

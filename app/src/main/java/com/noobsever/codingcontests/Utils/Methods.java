@@ -6,18 +6,27 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+
 import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import static android.content.Context.CONNECTIVITY_SERVICE;
 
@@ -196,4 +205,82 @@ public class Methods {
             void onComplete(boolean connected);
         }
     }
+
+
+    public static String utcToLocalTimeZone(Context context,String dateStr)
+    {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
+
+        int hr12 = Methods.getIntPreferences(context,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE);
+
+        SimpleDateFormat df2;
+        if(hr12==1) df2 = new SimpleDateFormat("dd-MM-yyyy, hh:mm a", Locale.ENGLISH);
+        else df2 = new SimpleDateFormat("dd-MM-yyyy, HH:mm", Locale.ENGLISH);
+
+        df.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date date = null;
+        try {
+            date = df.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        df.setTimeZone(TimeZone.getDefault());
+        df2.setTimeZone(TimeZone.getDefault());
+        assert date != null;
+
+        return df2.format(date);
+    }
+
+    public static String secondToFormatted(String duration)
+    {
+        long dur = Long.parseLong(duration);
+
+        long min=0,hour=0,day=0;
+
+        min = (dur%3600)/60;
+        hour = dur/3600;
+        day = hour/24;
+        hour= hour%24;
+
+        String s="";
+
+        if(day!=0)
+        {
+            if(hour==0 && min==0) s= s+ day +" days";
+            else s= s+ day +" days, ";
+        }
+
+        if(hour==0)
+        {
+            if(day==0)
+            {}
+            else if(min==0)
+            { }
+            else
+            {
+                s+= "0 hours, ";
+            }
+        }else
+        {
+            if(min==0) s+= hour + " hours";
+            else s+= hour + " hours, ";
+        }
+
+        if(min!=0)
+        {
+            s+= min + " minutes";
+        }
+        else{
+
+            if(day==0 && hour==0)
+            {
+                s+="0 minutes";
+            }
+
+        }
+
+        return s;
+
+    }
+
 }

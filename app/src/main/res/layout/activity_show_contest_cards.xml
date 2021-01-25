@@ -25,6 +25,7 @@
         android:layout_height="100dp"
         android:layout_margin="8dp"
         app:cardElevation="48dp"
+        app:layout_constraintBottom_toTopOf="@id/ContestCardsRecycler"
         app:layout_constraintTop_toBottomOf="@id/app_bar_of_cards">
 
         <ImageView

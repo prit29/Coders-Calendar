@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,6 +48,8 @@ public class PlatformsListAdapter extends RecyclerView.Adapter<PlatformsListAdap
 
     @Override
     public void onBindViewHolder(@NonNull final PlatformsListAdapterViewHolder holder, final int position) {
+
+        holder.contestTitle.setAnimation(AnimationUtils.loadAnimation(context,R.anim.pop_in));
         holder.contestTitle.setText(ContestObjectArrayList.get(position));
 
         holder.contestTitle.setOnClickListener(new View.OnClickListener() {
