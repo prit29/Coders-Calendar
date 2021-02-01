@@ -214,8 +214,8 @@ public class Methods {
         int hr12 = Methods.getIntPreferences(context,Constants.SWITCH_TWELVE,Constants.SWITCH_TWELVE);
 
         SimpleDateFormat df2;
-        if(hr12==1) df2 = new SimpleDateFormat("dd-MM-yyyy, hh:mm a", Locale.ENGLISH);
-        else df2 = new SimpleDateFormat("dd-MM-yyyy, HH:mm", Locale.ENGLISH);
+        if(hr12==1) df2 = new SimpleDateFormat("dd-MM-yyyy | hh:mm a", Locale.ENGLISH);
+        else df2 = new SimpleDateFormat("dd-MM-yyyy | HH:mm", Locale.ENGLISH);
 
         df.setTimeZone(TimeZone.getTimeZone("UTC"));
         Date date = null;

@@ -35,7 +35,7 @@
             android:layout_margin="8dp"
             android:adjustViewBounds="true"
             android:layout_gravity="center"
-            android:src="@drawable/codeforces" />
+            android:src="@drawable/codeforces2" />
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.recyclerview.widget.RecyclerView

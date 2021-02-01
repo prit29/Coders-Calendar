@@ -8,9 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -72,7 +70,7 @@ public class ShowContestCardsActivity extends AppCompatActivity {
                 mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.hackerrank2));
                 break;
             case Constants.LEETCODE:
-                mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.leetcode3));
+                mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.leetcode2));
                 break;
             case Constants.SPOJ:
                 mContestImage.setImageDrawable(getResources().getDrawable(R.drawable.spoj2));
